@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% block navbar %}
+        {{ include ('blog_elements/navbar.html.twig') }}
+    {% endblock %}
+    {% block banner %}
+        {{ include ('blog_elements/banner.html.twig',ignore_missing = true) }}
+    {% endblock %}
+    {% block main %}
+        <div class="container-fluid">
+            <div class="row justify-content-sm-center">
+                <div class="col-lg-8 p-0 pe-lg-5">
+                    <div class="p-3 border bg-light">
+                        {% block content %} {% endblock %}
+                    </div>
+                </div>
+                <div class="col-lg-4 p-0">
+                    <div class="p-2 bg-primary text-white h-100">
+                        {% block sidebar %} {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+    {% block footer %}
+        {{ include ('blog_elements/footer.html.twig') }}
+    {% endblock %}
+
+{% endblock %}
