@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\Category;
 use App\Entity\Post;
 use App\Entity\User;
+use DateInterval;
 use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -26,16 +27,19 @@ class AppFixtures extends Fixture
         $admin->setRoles(["ROLE_ADMIN"]);
 
         $category = new Category();
-        $post = new Post();
         $category->setName("Example category");
-        $post->setTitle("Example title");
-        $post->setContent("Add more, delete or edit this post");
-        $datetime = new DateTime('now');
-        $post->setDate($datetime);
-        $post->setCategory($category);
-
+        for($i=0; $i<10; $i++)
+        {
+            $post = new Post();
+            $post->setTitle("Example title ".$i);
+            $post->setContent("Add more, delete or edit this post");
+            $datetime = new DateTime('now');
+            $datetime->add(new DateInterval("P".$i."D"));
+            $post->setDate($datetime);
+            $post->setCategory($category);
+            $manager->persist($post);
+        }
         $manager->persist($admin);
-        $manager->persist($post);
         $manager->persist($category);
         $manager->flush();
     }
