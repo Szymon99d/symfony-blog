@@ -1,0 +1,19 @@
+<div class="ps-2">
+    <h2>{% trans %}Categories{% endtrans %}</h2>
+    <ul class="list-group ">
+        {% for category in categories %}
+        <a href="#" class="list-group-item d-flex justify-content-between align-items-start list-group-item-warning">
+            {{category.name}}
+        </a>
+        {% endfor %}
+    </ul>
+    <h2>{% trans %}Latest posts{% endtrans %}</h2>
+    <ul class="list-group ">
+        {% for post in posts %}
+        <a href="#" class="list-group-item d-flex justify-content-between align-items-start list-group-item-success">
+            {{post.title}}
+            <span class="badge bg-light text-dark">{% trans %}Date{% endtrans %}: {{post.date|date("d/m/Y")}}</span>
+        </a>
+        {% endfor %}
+    </ul>
+</div>

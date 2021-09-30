@@ -18,7 +18,9 @@
                 </div>
                 <div class="col-lg-4 p-0">
                     <div class="p-2 bg-primary text-white h-100">
-                        {% block sidebar %} {% endblock %}
+                        {% block sidebar %} 
+                            {{ render(controller('App\\Controller\\SidebarController::renderSidebar')) }}
+                        {% endblock %}
                     </div>
                 </div>
             </div>
