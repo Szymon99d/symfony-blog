@@ -15,10 +15,4 @@ class DefaultController extends AbstractController
         return $this->render('pages/homepage.html.twig', [
         ]);
     }
-    #[Route(['en'=>'/about-me','pl'=>'/o-mnie'], name: 'app_about')]
-    public function test(): Response
-    {
-        return $this->render('pages/homepage.html.twig', [
-        ]);
-    }
 }
