@@ -1,0 +1,36 @@
+{% extends 'blog_layout.html.twig' %}
+{% block title %}{% trans %}Homepage{% endtrans %}{% endblock %}
+
+{% block content %}
+
+{% for post in posts|slice((currentPage - 1) * 5,5)%}
+    <div class="container-fluid border border-4 my-4">
+        <h2>{{post.title}}</h2>
+        <label>{% trans %}Date{% endtrans %}: {{post.date|date('d.m.Y')}}<i class="p-1 bi bi-calendar3"></i></label>
+            <a class="btn btn-sm btn-primary">{{post.category.name}}</a>
+        <hr>
+        {% if post.content|length > 300 %}
+            <p>{{post.content|slice(0,300)}}...</p>
+        {% else %}
+            <p>{{post.content}}</p>
+        {% endif %}
+        <a class="btn btn-outline-success mb-2">{% trans %}Read more{% endtrans %}</a>
+    </div>
+
+{% endfor %}
+    <nav>
+        <ul class="pagination justify-content-center">
+        <li class="page-item"><a class="page-link" href="{{path('app_blog',{'page': prevPage })}}">Previous</a></li>
+
+    {% for i in 1..maxPages %}
+            {% if currentPage == i %}
+                <li class="page-item active"><a class="page-link" href="{{path('app_blog',{'page':i})}}">{{i}}</a></li>
+            {% else %}
+                <li class="page-item"><a class="page-link" href="{{path('app_blog',{'page':i})}}">{{i}}</a></li>
+            {% endif %}
+    {% endfor %}
+        <li class="page-item"><a class="page-link" href="{{path('app_blog',{'page': nextPage })}}">Next</a></li>
+        </ul>
+    </nav>
+
+{% endblock %}
