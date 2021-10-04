@@ -2,8 +2,10 @@
 {% block title %}{% trans %}Homepage{% endtrans %}{% endblock %}
 
 {% block content %}
-
-{% for post in posts|slice((currentPage - 1) * 5,5)%}
+<div class="d-flex justify-content-center">
+    <h2> -- {% trans %} Page {% endtrans %} {{currentPage}} {% trans %} of {% endtrans %} {{ posts.pageCount }} --</h2>
+</div>
+{% for post in posts %}
     <div class="container-fluid border border-4 my-4">
         <h2>{{post.title}}</h2>
         <label>{% trans %}Date{% endtrans %}: {{post.date|date('d.m.Y')}}<i class="p-1 bi bi-calendar3"></i></label>
@@ -16,21 +18,9 @@
         {% endif %}
         <a class="btn btn-outline-success mb-2">{% trans %}Read more{% endtrans %}</a>
     </div>
-
 {% endfor %}
-    <nav>
-        <ul class="pagination justify-content-center">
-        <li class="page-item"><a class="page-link" href="{{path('app_blog',{'page': prevPage })}}">Previous</a></li>
 
-    {% for i in 1..maxPages %}
-            {% if currentPage == i %}
-                <li class="page-item active"><a class="page-link" href="{{path('app_blog',{'page':i})}}">{{i}}</a></li>
-            {% else %}
-                <li class="page-item"><a class="page-link" href="{{path('app_blog',{'page':i})}}">{{i}}</a></li>
-            {% endif %}
-    {% endfor %}
-        <li class="page-item"><a class="page-link" href="{{path('app_blog',{'page': nextPage })}}">Next</a></li>
-        </ul>
-    </nav>
-
+<div class="d-flex justify-content-center">
+{{knp_pagination_render(posts)}}
+</div>
 {% endblock %}

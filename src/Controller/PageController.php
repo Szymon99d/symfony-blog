@@ -24,21 +24,19 @@ class PageController extends AbstractController{
     #[Route('/blog/{page}', name: 'app_blog', defaults:['page'=>1])]
     public function blog(EntityManagerInterface $em, $page): Response
     {
-        $maxPages = ceil(11/5);
-        $prevPage = 1;
-        if($page-1>0)
-            $prevPage = $page-1;
-        $nextPage = $maxPages;
-        if($page+1<$maxPages)
-            $nextPage = $page+1;
-        
-        $posts = $em->getRepository(Post::class)->findBy([],['date'=>'DESC']);
+        // $posts = $em->getRepository(Post::class)->findBy([],['date'=>'DESC']);
+        $posts = $em->getRepository(Post::class)->findAllPaginated($page);
+
+        // $maxPages = ceil(count($posts)/5);
+        // $prevPage = 1;
+        // if($page-1>0)
+        //     $prevPage = $page-1;
+        // $nextPage = $maxPages;
+        // if($page+1<$maxPages)
+        //     $nextPage = $page+1;
         return $this->render('pages/blog.html.twig', [
             'posts'=>$posts,
             'currentPage'=>$page,
-            'prevPage'=>$prevPage,
-            'nextPage'=>$nextPage,
-            'maxPages'=>$maxPages,
         ]);
     }
     #[Route(['en'=>'/contact','pl'=>'/kontakt'], name: 'app_contact')]

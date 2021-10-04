@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Post;
+use Knp\Component\Pager\PaginatorInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -14,9 +15,11 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class PostRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    private $paginator;
+    public function __construct(ManagerRegistry $registry, PaginatorInterface $paginator)
     {
         parent::__construct($registry, Post::class);
+        $this->paginator = $paginator;
     }
 
     // /**
@@ -47,4 +50,13 @@ class PostRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findAllPaginated($page)
+    {
+        $query = $this->createQueryBuilder('p')
+        ->orderBy('p.date','DESC')
+        ->getQuery();
+        $pagination = $this->paginator->paginate($query,$page,5);
+        return $pagination;
+    }
 }
