@@ -9,4 +9,7 @@
         <hr>
         <p>{{post.content}}</p>
     </div>
+    <div class="d-flex justify-content-center">
+        <a href="{{app.request.headers.get('referer')}}" class="btn btn-lg btn-outline-primary px-4">{% trans %}Return to all posts{% endtrans %}</a>
+    </div>
 {% endblock %}
