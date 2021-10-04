@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Category;
 use App\Entity\Post;
 use Knp\Component\Pager\PaginatorInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -51,11 +52,22 @@ class PostRepository extends ServiceEntityRepository
     }
     */
 
-    public function findAllPaginated($page)
+    public function findAllPaginated(int $page, Category | null $category)
     {
-        $query = $this->createQueryBuilder('p')
-        ->orderBy('p.date','DESC')
-        ->getQuery();
+        if($category!=null){
+            $query = $this->createQueryBuilder('p')
+            ->join('p.category','r')
+            ->where('r.id = :cid')
+            ->setParameter('cid',$category->getId())
+            ->orderBy('p.date','DESC')
+            ->getQuery();
+        }
+        else{
+            $query = $this->createQueryBuilder('p')
+            ->orderBy('p.date','DESC')
+            ->getQuery();
+        }
+
         $pagination = $this->paginator->paginate($query,$page,5);
         return $pagination;
     }

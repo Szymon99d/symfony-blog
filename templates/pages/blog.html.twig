@@ -3,13 +3,18 @@
 
 {% block content %}
 <div class="d-flex justify-content-center">
-    <h2> -- {% trans %} Page {% endtrans %} {{currentPage}} {% trans %} of {% endtrans %} {{ posts.pageCount }} --</h2>
+    <h2> -- {% trans %} Page {% endtrans %} {{currentPage}} {% trans %} of {% endtrans %} {{ posts.pageCount }} -- </h2>
 </div>
+{% if app.request.get('_route') == 'app_blog_category' %}
+<div class="d-flex justify-content-center">
+    <h3>{% trans %}You are browsing{% endtrans %} <span class="text-success">{{posts[0].category.name}}</span> {% trans %}category{% endtrans %}</h3>
+</div>
+{% endif %}
 {% for post in posts %}
     <div class="container-fluid border border-4 my-4">
         <h2>{{post.title}}</h2>
         <label>{% trans %}Date{% endtrans %}: {{post.date|date('d.m.Y')}}<i class="p-1 bi bi-calendar3"></i></label>
-            <a class="btn btn-sm btn-primary">{{post.category.name}}</a>
+            <a href="{{path('app_blog_category',{'category':post.category.id})}}" class="btn btn-sm btn-primary">{{post.category.name}}</a>
         <hr>
         {% if post.content|length > 300 %}
             <p>{{post.content|slice(0,300)}}...</p>

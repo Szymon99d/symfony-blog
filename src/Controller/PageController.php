@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Post;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,16 +25,17 @@ class PageController extends AbstractController{
     #[Route('/blog/{page}', name: 'app_blog', defaults:['page'=>1])]
     public function blog(EntityManagerInterface $em, $page): Response
     {
-        // $posts = $em->getRepository(Post::class)->findBy([],['date'=>'DESC']);
-        $posts = $em->getRepository(Post::class)->findAllPaginated($page);
+        $posts = $em->getRepository(Post::class)->findAllPaginated($page,null);
 
-        // $maxPages = ceil(count($posts)/5);
-        // $prevPage = 1;
-        // if($page-1>0)
-        //     $prevPage = $page-1;
-        // $nextPage = $maxPages;
-        // if($page+1<$maxPages)
-        //     $nextPage = $page+1;
+        return $this->render('pages/blog.html.twig', [
+            'posts'=>$posts,
+            'currentPage'=>$page,
+        ]);
+    }
+    #[Route('/category/{category}/{page}',name: 'app_blog_category', defaults:['page'=>1,'category'=>1])]
+    public function blogCategory(EntityManagerInterface $em,int $page, Category $category): Response
+    {
+        $posts = $em->getRepository(Post::class)->findAllPaginated($page,$category);
         return $this->render('pages/blog.html.twig', [
             'posts'=>$posts,
             'currentPage'=>$page,
