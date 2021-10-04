@@ -1,0 +1,12 @@
+{% extends 'blog_layout.html.twig' %}
+{% block title %}{% trans %}Homepage{% endtrans %}{% endblock %}
+
+{% block content %}
+    <div class="container-fluid border border-4 my-4">
+        <h2>{{post.title}}</h2>
+        <label>{% trans %}Date{% endtrans %}: {{post.date|date('d.m.Y')}}<i class="p-1 bi bi-calendar3"></i></label>
+            <a class="btn btn-sm btn-primary">{{post.category.name}}</a>
+        <hr>
+        <p>{{post.content}}</p>
+    </div>
+{% endblock %}

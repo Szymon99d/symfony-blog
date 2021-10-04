@@ -16,7 +16,7 @@
         {% else %}
             <p>{{post.content}}</p>
         {% endif %}
-        <a class="btn btn-outline-success mb-2">{% trans %}Read more{% endtrans %}</a>
+        <a href="{{path('app_post_read',{'id':post.getId()})}}" class="btn btn-outline-success mb-2">{% trans %}Read more{% endtrans %}</a>
     </div>
 {% endfor %}
 

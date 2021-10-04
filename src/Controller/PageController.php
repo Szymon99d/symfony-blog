@@ -39,6 +39,13 @@ class PageController extends AbstractController{
             'currentPage'=>$page,
         ]);
     }
+    #[Route('/blog/post/{id}', name: 'app_post_read')]
+    public function post(Post $post): Response
+    {
+        return $this->render('pages/post.html.twig', [
+            'post'=>$post
+        ]);
+    }
     #[Route(['en'=>'/contact','pl'=>'/kontakt'], name: 'app_contact')]
     public function contact(): Response
     {
