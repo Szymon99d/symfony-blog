@@ -48,12 +48,6 @@ class PageController extends AbstractController{
             'post'=>$post
         ]);
     }
-    #[Route(['en'=>'/contact','pl'=>'/kontakt'], name: 'app_contact')]
-    public function contact(): Response
-    {
-        return $this->render('pages/contact.html.twig', [
-        ]);
-    }
 }
 
 ?>
