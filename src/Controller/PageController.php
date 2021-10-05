@@ -13,13 +13,13 @@ class PageController extends AbstractController{
     #[Route(['en'=>'/about-me','pl'=>'/o-mnie'], name: 'app_about')]
     public function aboutMe(): Response
     {
-        return $this->render('pages/homepage.html.twig', [
+        return $this->render('pages/aboutme.html.twig', [
         ]);
     }
     #[Route('/portfolio', name: 'app_portfolio')]
     public function portfolio(): Response
     {
-        return $this->render('pages/homepage.html.twig', [
+        return $this->render('pages/portfolio.html.twig', [
         ]);
     }
     #[Route('/blog/{page}', name: 'app_blog', defaults:['page'=>1])]
@@ -51,7 +51,7 @@ class PageController extends AbstractController{
     #[Route(['en'=>'/contact','pl'=>'/kontakt'], name: 'app_contact')]
     public function contact(): Response
     {
-        return $this->render('pages/homepage.html.twig', [
+        return $this->render('pages/contact.html.twig', [
         ]);
     }
 }
