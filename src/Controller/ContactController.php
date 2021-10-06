@@ -10,6 +10,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportException;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 
@@ -47,13 +49,17 @@ class ContactController extends AbstractController{
             ->from($data['email'])
             ->to('admin@localhost')
             ->subject($data['subject'])
-            ->text($data['message']);
-            $mailer->send($message);
-        }
-        if ($form->isSubmitted() && !$form->isValid()){
-            $this->addFlash('danger','Something went wrong, message was not sent.');
-        }
-        
+            ->html("<p>".$data['message']."</p>");
+            
+            try{
+                $mailer->send($message);
+            }
+            catch(TransportExceptionInterface $e)
+            {
+                $this->addFlash('danger','Something went wrong, message was not sent.');
+            }
+            
+        } 
         return $this->render('pages/contact.html.twig', [
             'form'=>$form->createView(),
         ]);
