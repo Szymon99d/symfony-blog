@@ -44,7 +44,6 @@ class ContactController extends AbstractController{
         if ($form->isSubmitted() && $form->isValid()) {
             $this->addFlash('success','Message was sent successfully');
             $data = $form->getData();
-            dump($data['subject']);
             $message = (new Email())
             ->from($data['email'])
             ->to('admin@localhost')

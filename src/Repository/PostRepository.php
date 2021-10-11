@@ -59,16 +59,16 @@ class PostRepository extends ServiceEntityRepository
             ->join('p.category','r')
             ->where('r.id = :cid')
             ->setParameter('cid',$category->getId())
-            ->orderBy('p.date','DESC')
+            //->orderBy('p.date','DESC')
             ->getQuery();
         }
         else{
             $query = $this->createQueryBuilder('p')
-            ->orderBy('p.date','DESC')
+            //->orderBy('p.date','DESC')
             ->getQuery();
         }
 
-        $pagination = $this->paginator->paginate($query,$page,5);
+        $pagination = $this->paginator->paginate($query,$page,5,['defaultSortFieldName'=>'p.date','defaultSortDirection'=>'DESC']);
         return $pagination;
     }
 }
