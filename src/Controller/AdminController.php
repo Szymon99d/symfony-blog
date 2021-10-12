@@ -3,12 +3,20 @@
 namespace App\Controller;
 
 use App\Entity\Post;
+use App\Form\PostType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AdminController extends AbstractController{
+    
+    private $em;
+    public function __construct(EntityManagerInterface $em)
+    {
+        $this->em = $em;
+    }
     
     #[Route(['en'=>'/admin-dashboard','pl'=>'/panel-administratora'], name: 'app_admin')]
     public function adminDashboard(): Response{
@@ -27,10 +35,25 @@ class AdminController extends AbstractController{
     }
     #[Route(['en'=>'/admin-edit-post/{post}','pl'=>'/admin-edytuj-post/{post}'], name: 'app_admin_edit_posts'
     )]
-    public function adminEditPost(Post $post): Response{
+    public function adminEditPost(Post $post, Request $request): Response{
 
+        $form = $this->createForm(PostType::class,$post);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $data = $form->getData();
+            $post->setTitle($data->getTitle());
+            $post->setContent($data->getContent());
+            $post->setDate($data->getDate());
+            $post->setCategory($data->getCategory());
+            $this->em->persist($post);
+            $this->em->flush();
+        }
+        
         return $this->render('/admin/posts/edit_post.html.twig',[
-            'post'=>$post,
+            'postForm'=>$form->createView(),
+            'post'=>$post
         ]);
     }
 

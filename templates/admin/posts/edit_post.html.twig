@@ -1,0 +1,36 @@
+{% extends 'admin_layout.html.twig' %}
+
+{% block main %}
+
+
+<div class="container w-75">
+
+<div class="my-4">
+    <h3>You are editing <span class="text-success">{{post.title}} [id {{post.id}}]</span> post</h3>
+</div>
+
+{{form_start(postForm)}}
+
+{{form_label(postForm.title)}}
+{{form_widget(postForm.title)}}
+
+
+{{form_label(postForm.date.date)}}
+{{form_widget(postForm.date.date,{'attr':{'class':'form-control mb-3'}})}}
+{{form_label(postForm.date.time)}}
+{{form_widget(postForm.date.time,{'attr':{'class':'form-control mb-3'}})}}
+
+
+{{form_label(postForm.content)}}
+{{form_widget(postForm.content)}}
+
+
+{{form_label(postForm.category)}}
+{{form_widget(postForm.category)}}
+
+
+{{form_end(postForm)}}
+
+</div>
+
+{% endblock %}
