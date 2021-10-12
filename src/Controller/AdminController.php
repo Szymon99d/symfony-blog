@@ -14,15 +14,23 @@ class AdminController extends AbstractController{
     public function adminDashboard(): Response{
         return $this->render('/admin/admin_dashboard.html.twig');
     }
-    #[Route(['en'=>'/admin-edit-posts/{page}','pl'=>'/admin-edytuj-posty/{page}'], name: 'app_admin_edit_posts',
+    #[Route(['en'=>'/admin-post-panel/{page}','pl'=>'/admin-panel-postów/{page}'], name: 'app_admin_post_panel',
         defaults: ['page'=>1]
     )]
-    public function adminEditPosts(EntityManagerInterface $em, int $page): Response{
+    public function adminPostPanel(EntityManagerInterface $em, int $page): Response{
 
         $posts = $em->getRepository(Post::class)->findAllPaginated($page,null);
 
-        return $this->render('/admin/posts/edit_post.html.twig',[
+        return $this->render('/admin/posts/post_panel.html.twig',[
             'posts'=>$posts,
+        ]);
+    }
+    #[Route(['en'=>'/admin-edit-post/{post}','pl'=>'/admin-edytuj-post/{post}'], name: 'app_admin_edit_posts'
+    )]
+    public function adminEditPost(Post $post): Response{
+
+        return $this->render('/admin/posts/edit_post.html.twig',[
+            'post'=>$post,
         ]);
     }
 

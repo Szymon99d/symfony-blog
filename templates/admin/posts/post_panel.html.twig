@@ -13,13 +13,16 @@
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td colspan="5"><a class="btn btn-success w-100">Add new post</a></td>
+    </tr>
     {% for post in posts %}
         <tr>
             <td>{{post.id}}</td>
             <td>{{post.title}}</td>
             <td>{{post.content}}</td>
             <td>{{post.date|date('d/m/Y')}}</td>
-            <td><a class="btn btn-success mx-1">Edit</a><a class="btn btn-danger">Delete</a></td>
+            <td><a class="btn btn-primary mx-1">Edit</a><a class="btn btn-danger">Delete</a></td>
         </tr>
     {% endfor %}
   </tbody>
