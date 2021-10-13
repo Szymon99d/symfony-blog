@@ -56,9 +56,38 @@ class AdminController extends AbstractController{
             'post'=>$post
         ]);
     }
+    #[Route(['en'=>'/admin-create-post','pl'=>'/admin-dodaj-post'], name: 'app_admin_create_post'
+    )]
+    public function adminCreatePost(Request $request): Response{
 
+        $post = new Post();
+        $form = $this->createForm(PostType::class,$post);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $data = $form->getData();
+            $post->setTitle($data->getTitle());
+            $post->setContent($data->getContent());
+            $post->setDate($data->getDate());
+            $post->setCategory($data->getCategory());
+            $this->em->persist($post);
+            $this->em->flush();
+            return $this->redirectToRoute("app_admin_post_panel",['page'=>1]);
+        }
+        
+        return $this->render('/admin/posts/edit_post.html.twig',[
+            'postForm'=>$form->createView(),
+            'post'=>$post
+        ]);
+    }
+    #[Route(['en'=>'/admin-delete-post/{post}','pl'=>'/admin-usuń-post/{post}'], name: 'app_admin_delete_post'
+    )]
+    public function adminDeletePost(Post $post): Response
+    {
+        $this->em->remove($post);
+        $this->em->flush();
+        return $this->redirectToRoute("app_admin_post_panel",['page'=>1]);
+    }
 }
-
-
 
 ?>

@@ -13,9 +13,6 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td colspan="5"><a class="btn btn-success w-100">Add new post</a></td>
-    </tr>
     {% for post in posts %}
         <tr>
             <td>{{post.id}}</td>
@@ -25,6 +22,9 @@
             <td><a class="btn btn-primary mx-1">Edit</a><a class="btn btn-danger">Delete</a></td>
         </tr>
     {% endfor %}
+        <tr>
+          <td colspan="5"><a class="btn btn-success w-100">Add new post</a></td>
+        </tr>
   </tbody>
 </table>
  
