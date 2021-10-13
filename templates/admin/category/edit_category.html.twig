@@ -1,0 +1,29 @@
+{% extends 'admin_layout.html.twig' %}
+
+{% block main %}
+
+
+<div class="container w-75">
+
+{% if category.id != null %}
+<div class="my-4">
+    <h3>You are editing <span class="text-success">{{category.name}} [id {{category.id}}]</span> category</h3>
+</div>
+{% else %}
+<div class="my-4">
+    <h3>You are adding a new category</h3>
+</div>
+{% endif %}
+{{form_start(categoryForm)}}
+
+{{form_label(categoryForm.name)}}
+{{form_widget(categoryForm.name)}}
+
+{{form_widget(categoryForm.submit)}}
+<a href="{{path('app_admin_category_panel')}}" class="btn btn-primary">Back to category panel</a>
+
+{{form_end(categoryForm)}}
+
+</div>
+
+{% endblock %}
