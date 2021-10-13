@@ -33,7 +33,7 @@ class AdminController extends AbstractController{
             'posts'=>$posts,
         ]);
     }
-    #[Route(['en'=>'/admin-edit-post/{post}','pl'=>'/admin-edytuj-post/{post}'], name: 'app_admin_edit_posts'
+    #[Route(['en'=>'/admin-edit-post/{post}','pl'=>'/admin-edytuj-post/{post}'], name: 'app_admin_edit_post'
     )]
     public function adminEditPost(Post $post, Request $request): Response{
 
