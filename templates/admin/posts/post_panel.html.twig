@@ -17,7 +17,11 @@
         <tr>
             <td>{{post.id}}</td>
             <td>{{post.title}}</td>
-            <td>{{post.content}}</td>
+            {% if post.content|length > 50 %}
+              <td>{{post.content|slice(0,50)}}...</td>
+            {% else %}
+              <td>{{post.content}}</td>
+            {% endif %}
             <td>{{post.date|date('d/m/Y')}}</td>
             <td><a class="btn btn-primary mx-1">Edit</a><a class="btn btn-danger">Delete</a></td>
         </tr>
