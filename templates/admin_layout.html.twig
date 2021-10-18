@@ -15,11 +15,11 @@ html,body{
         
         <div class="col-sm-3 bg-dark text-white p-3">
         {% block sidebar %}
-            <h3>Admin Dashboard</h3>
+            <h3><a href="{{path('app_admin')}}" class="text-white text-decoration-none">Admin Dashboard</a></h3>
             <hr class="mb-3" size="5">
             <div>
-                <a href="#" class="mb-4 d-block text-white text-decoration-none fs-4"><i class="p-2 bi bi-newspaper"></i>Posts</a>
-                <a href="#" class="mb-4 d-block text-white text-decoration-none fs-4"><i class="p-2 bi bi-bar-chart-steps"></i>Categories</a>
+                <a href="{{path('app_admin_post_panel')}}" class="mb-4 d-block text-white text-decoration-none fs-4"><i class="p-2 bi bi-newspaper"></i>Posts</a>
+                <a href="{{path('app_admin_category_panel')}}" class="mb-4 d-block text-white text-decoration-none fs-4"><i class="p-2 bi bi-bar-chart-steps"></i>Categories</a>
                 <a href="#" class="mb-4 d-block text-white text-decoration-none fs-4"><i class="p-2 bi bi-image-fill"></i>Banner</a>
                 <a href="#" class="mb-4 d-block text-white text-decoration-none fs-4"><i class="p-2 bi bi-file-earmark-ppt"></i>Pages</a>
             </div>
