@@ -1,0 +1,26 @@
+{% extends 'admin_layout.html.twig' %}
+
+{% block main %}
+
+{% for label,messages in app.flashes %}
+    {% for message in messages %}
+    <div class="alert alert-{{label}} mt-2">
+        {{message}}
+    </div>
+    {% endfor %}
+{% endfor %}
+
+<h1 class="pb-2">Change banner</h1>
+<h2 class="pb-2">Best resolution: 1920x300</h2>
+
+{{form_start(form)}}
+
+{{form_label(form.image)}}
+{{form_widget(form.image)}}
+
+{{form_widget(form.submit)}}
+
+{{form_end(form)}}
+<a href="{{path('app_admin_banner_panel')}}" class="btn btn-primary">Back to banner panel</a>
+
+{% endblock %}

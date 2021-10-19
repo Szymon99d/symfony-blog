@@ -9,7 +9,7 @@
     <img class="img-fluid w-100" src="{{ asset('images/') ~ banner.image }}" alt="{{banner.altText}}"/>
 </div>
 <div class="d-flex justify-content-center p-4">
-<a href="#" class="btn btn-primary m-1">Change current banner</a>
+<a href="{{path('app_admin_banner_change')}}" class="btn btn-primary m-1">Change current banner</a>
 <a href="{{path('app_admin_banner_disable',{'banner':banner.id})}}"
 {% if banner.active %}
     class="btn btn-danger m-1">
