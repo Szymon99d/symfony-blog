@@ -6,7 +6,7 @@
         {{ include ('blog_elements/navbar.html.twig') }}
     {% endblock %}
     {% block banner %}
-        {{ include ('blog_elements/banner.html.twig',ignore_missing = true) }}
+        {{ render(controller('App\\Controller\\RenderBannerController::renderBanner')) }}
     {% endblock %}
     {% block main %}
         <div class="container-fluid">
