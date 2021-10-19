@@ -1,3 +1,5 @@
 <div class="container-fluid p-0">
-<img class="img-fluid w-100" src="{{asset('images/') ~ banner.image }}" alt="{{banner.altText}}"/>
+    {% if banner.active %}
+        <img class="img-fluid w-100" src="{{asset('images/') ~ banner.image }}" alt="{{banner.altText}}"/>
+    {% endif %}
 </div>

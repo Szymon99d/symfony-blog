@@ -25,5 +25,12 @@ class BannerController extends AbstractController{
         
         return $this->render('/admin/admin_dashboard.html.twig');
     }
+    #[Route(['en'=>'/admin/disable-banner/{banner}','pl'=>'/admin/wyłącz-baner/{banner}'], name: 'app_admin_banner_disable')]
+    public function bannerDisable(EntityManagerInterface $em, Banner $banner): Response{
+        $banner->setActive(!$banner->getActive());
+        $em->persist($banner);
+        $em->flush(); 
+        return $this->redirectToRoute("app_admin_banner_panel");
+    }
 }
 ?>
