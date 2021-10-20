@@ -15,7 +15,7 @@
         <tr>
             <td>{{page.id}}</td>
             <td>{{page.pageName}}</td>
-            {# <td><a href="{{path('app_admin_edit_category',{'category':category.id})}}" class="btn btn-primary mx-1">Edit content</a> #}
+            <td><a href="{{path('app_admin_page_edit',{'page':page.id})}}" class="btn btn-primary mx-1">Edit content</a>
         </tr>
     {% endfor %}
   </tbody>

@@ -1,0 +1,27 @@
+{% extends 'admin_layout.html.twig' %}
+
+{% block main %}
+<div class="container p-5">
+
+    {{form_start(form)}}
+
+    {{form_label(form.pageName)}}
+    {{form_widget(form.pageName)}}
+
+
+    {{form_label(form.title)}}
+    {{form_help(form.title)}}
+    {{form_widget(form.title)}}
+
+    {{form_label(form.content)}}
+    {{form_help(form.content)}}
+    {{form_widget(form.content)}}
+   
+
+    {{form_widget(form.submit)}}
+
+    <a href="{{path('app_admin_page_panel')}}" class="btn btn-primary">Back to page panel</a>
+    {{form_end(form)}}
+
+</div>
+{% endblock %}
