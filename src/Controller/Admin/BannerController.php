@@ -27,24 +27,23 @@ class BannerController extends AbstractController{
         
         $form = $this->createFormBuilder()
             ->add('image', FileType::class,[
-                'attr'=>['accept'=>'.png, .jpg, .jpeg', 'class'=>'form-control mb-4'],
+                'attr'=>['accept'=>'.png', 'class'=>'form-control mb-4'],
                 'label'=>'Upload image'
             ])
             ->add('submit',SubmitType::class,[
                 'attr'=>['class'=>'btn btn-success w-25']
             ])
             ->getForm();
-
+                
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())
         {
             $image = $form->get('image')->getData();
-            if($image->guessExtension()!="png" && $image->guessExtension()!="jpg" && $image->guessExtension()!="jpeg")
-                {$this->addFlash('danger','Image upload failed!'); 
-                dump($image->guessExtension());}
+            if($image->guessExtension()!="png")
+                $this->addFlash('danger','Image upload failed!');
             else{
                 try{
-                    $fileName = 'default-banner.'.$image->guessExtension();
+                    $fileName = 'banner.'.$image->guessExtension();
                     $image->move(
                     $this->getParameter('image_path'),
                     $fileName
