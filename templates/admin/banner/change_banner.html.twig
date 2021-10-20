@@ -12,6 +12,7 @@
 
 <h1 class="pb-2">Change banner</h1>
 <h2 class="pb-2">Best resolution: 1920x300</h2>
+<h2 class="pb-2">Supported image extension: .png</h2>
 
 {{form_start(form)}}
 
@@ -19,8 +20,8 @@
 {{form_widget(form.image)}}
 
 {{form_widget(form.submit)}}
-
-{{form_end(form)}}
 <a href="{{path('app_admin_banner_panel')}}" class="btn btn-primary">Back to banner panel</a>
+{{form_end(form)}}
+
 
 {% endblock %}
