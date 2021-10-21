@@ -27,8 +27,8 @@ class AdminPageController extends AbstractController{
         if($form->isSubmitted() && $form->isValid())
         {
             $formData = $form->getData();
-            $page->setTitle($formData['title']);
-            $page->setContent($formData['content']);
+            $page->setTitle($formData->getTitle());
+            $page->setContent($formData->getContent());
             $em->persist($page);
             $em->flush();
             $this->addFlash('success','Page content updated successfully!');
