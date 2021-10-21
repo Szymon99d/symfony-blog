@@ -24,7 +24,7 @@ class AdminController extends AbstractController{
     public function adminDashboard(): Response{
         return $this->render('/admin/admin_dashboard.html.twig');
     }
-    #[Route(['en'=>'/admin-post-panel/{page}','pl'=>'/admin-panel-postów/{page}'], name: 'app_admin_post_panel',
+    #[Route(['en'=>'/admin/post-panel/{page}','pl'=>'/admin/panel-postów/{page}'], name: 'app_admin_post_panel',
         defaults: ['page'=>1]
     )]
     public function adminPostPanel(int $page): Response{
@@ -94,7 +94,7 @@ class AdminController extends AbstractController{
     
     
     
-    #[Route(['en'=>'/admin/category/panel/{page}','pl'=>'/admin/panel/kategorii/{page}'], name: 'app_admin_category_panel',
+    #[Route(['en'=>'/admin/category-panel/{page}','pl'=>'/admin/panel-kategorii/{page}'], name: 'app_admin_category_panel',
     defaults: ['page'=>1]
     )]
     public function adminCategoryPanel(int $page): Response{
