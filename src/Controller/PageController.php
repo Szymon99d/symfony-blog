@@ -42,6 +42,7 @@ class PageController extends AbstractController{
     public function blogCategory(EntityManagerInterface $em,int $page, Category $category): Response
     {
         $posts = $em->getRepository(Post::class)->findAllPaginated($page,$category);
+        dump($posts);
         return $this->render('pages/blog.html.twig', [
             'posts'=>$posts,
             'currentPage'=>$page,

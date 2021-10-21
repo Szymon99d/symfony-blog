@@ -7,7 +7,11 @@
 </div>
 {% if app.request.get('_route') == 'app_blog_category' %}
 <div class="d-flex justify-content-center">
-    <h3>{% trans %}You are browsing{% endtrans %} <span class="text-success">{{posts[0].category.name}}</span> {% trans %}category{% endtrans %}</h3>
+    {% if posts.items != null %}
+        <h3>{% trans %}You are browsing{% endtrans %} <span class="text-success">{{posts[0].category.name}}</span> {% trans %}category{% endtrans %}</h3>
+    {% else %}
+        <h3>{% trans %}This category is empty{% endtrans %}</h3>
+    {% endif %}
 </div>
 {% endif %}
 {% for post in posts %}
