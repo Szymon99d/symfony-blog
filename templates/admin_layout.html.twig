@@ -9,19 +9,19 @@ html,body{
 
 <div class="container-fluid h-100 p-0">
     <a href="{{path('app_homepage')}}" class="btn btn-primary w-100 m-0 border-0 rounded-0">
-        <h4><i class="bi bi-arrow-90deg-left p-2"></i>Back to homepage</h4>
+        <h4><i class="bi bi-arrow-90deg-left p-2"></i>{% trans %}Back.to.homepage{% endtrans %}</h4>
     </a>
     <div class="row h-100 m-0">
         
         <div class="col-sm-3 bg-dark text-white p-3">
         {% block sidebar %}
-            <h3><a href="{{path('app_admin')}}" class="text-white text-decoration-none">Admin Dashboard</a></h3>
+            <h3><a href="{{path('app_admin')}}" class="text-white text-decoration-none">{% trans %}Admin dashboard{% endtrans %}</a></h3>
             <hr class="mb-3" size="5">
             <div>
-                <a href="{{path('app_admin_post_panel')}}" class="mb-4 d-block text-white text-decoration-none fs-4"><i class="p-2 bi bi-newspaper"></i>Posts</a>
-                <a href="{{path('app_admin_category_panel')}}" class="mb-4 d-block text-white text-decoration-none fs-4"><i class="p-2 bi bi-bar-chart-steps"></i>Categories</a>
-                <a href="{{path('app_admin_banner_panel')}}" class="mb-4 d-block text-white text-decoration-none fs-4"><i class="p-2 bi bi-image-fill"></i>Banner</a>
-                <a href="{{path('app_admin_page_panel')}}" class="mb-4 d-block text-white text-decoration-none fs-4"><i class="p-2 bi bi-file-earmark-ppt"></i>Pages</a>
+                <a href="{{path('app_admin_post_panel')}}" class="mb-4 d-block text-white text-decoration-none fs-4"><i class="p-2 bi bi-newspaper"></i>{% trans %}Posts{% endtrans %}</a>
+                <a href="{{path('app_admin_category_panel')}}" class="mb-4 d-block text-white text-decoration-none fs-4"><i class="p-2 bi bi-bar-chart-steps"></i>{% trans %}Categories{% endtrans %}</a>
+                <a href="{{path('app_admin_banner_panel')}}" class="mb-4 d-block text-white text-decoration-none fs-4"><i class="p-2 bi bi-image-fill"></i>{% trans %}Banner{% endtrans %}</a>
+                <a href="{{path('app_admin_page_panel')}}" class="mb-4 d-block text-white text-decoration-none fs-4"><i class="p-2 bi bi-file-earmark-ppt"></i>{% trans %}Pages{% endtrans %}</a>
             </div>
         {% endblock %}
         </div>
