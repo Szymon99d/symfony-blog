@@ -5,14 +5,14 @@
 {% for label,messages in app.flashes %}
     {% for message in messages %}
     <div class="alert alert-{{label}} mt-2">
-        {{message}}
+        {{message|trans}}
     </div>
     {% endfor %}
 {% endfor %}
 
-<h1 class="pb-2">Change banner</h1>
-<h2 class="pb-2">Best resolution: 1920x300</h2>
-<h2 class="pb-2">Supported image extension: .png</h2>
+<h1 class="pb-2">{% trans %}Change banner{% endtrans %}</h1>
+<h2 class="pb-2">{% trans %}Best resolution{% endtrans %}: 1920x300</h2>
+<h2 class="pb-2">{% trans %}Supported image extension{% endtrans %}: .png</h2>
 
 {{form_start(form)}}
 
@@ -20,7 +20,7 @@
 {{form_widget(form.image)}}
 
 {{form_widget(form.submit)}}
-<a href="{{path('app_admin_banner_panel')}}" class="btn btn-primary">Back to banner panel</a>
+<a href="{{path('app_admin_banner_panel')}}" class="btn btn-primary">{% trans %}Back.to.banner.panel{% endtrans %}</a>
 {{form_end(form)}}
 
 

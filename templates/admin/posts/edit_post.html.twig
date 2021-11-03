@@ -7,11 +7,11 @@
 
 {% if post.id != null %}
 <div class="my-4">
-    <h3>You are editing <span class="text-success">{{post.title}} [id {{post.id}}]</span> post</h3>
+    <h3>{% trans %}You are editing {% endtrans %} <span class="text-success">{{post.title}} [id {{post.id}}]</span> post</h3>
 </div>
 {% else %}
 <div class="my-4">
-    <h3>You are adding a new post</h3>
+    <h3>{% trans %}You are adding a new{% endtrans %} post</h3>
 </div>
 {% endif %}
 {{form_start(postForm)}}
@@ -35,7 +35,7 @@
 
 
 {{form_widget(postForm.submit)}}
-<a href="{{path('app_admin_post_panel')}}" class="btn btn-primary">Back to post panel</a>
+<a href="{{path('app_admin_post_panel')}}" class="btn btn-primary">{% trans %}Back.to.post.panel{% endtrans %}</a>
 
 {{form_end(postForm)}}
 

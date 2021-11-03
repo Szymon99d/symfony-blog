@@ -6,8 +6,8 @@
   <thead>
     <tr>
       <th scope="col">Id</th>
-      <th scope="col">Page name</th>
-      <th scope="col">Actions</th>
+      <th scope="col">{% trans %}Page name{% endtrans %}</th>
+      <th scope="col">{% trans %}Actions{% endtrans %}</th>
     </tr>
   </thead>
   <tbody>
@@ -15,7 +15,7 @@
         <tr>
             <td>{{page.id}}</td>
             <td>{{page.pageName}}</td>
-            <td><a href="{{path('app_admin_page_edit',{'page':page.id})}}" class="btn btn-primary mx-1">Edit content</a>
+            <td><a href="{{path('app_admin_page_edit',{'page':page.id})}}" class="btn btn-primary mx-1">{% trans %}Edit.content{% endtrans %}</a>
         </tr>
     {% endfor %}
   </tbody>

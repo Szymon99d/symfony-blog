@@ -38,10 +38,49 @@ Posts: Posty
 Banner: Baner
 Welcome: Witaj
 Edit:
+  blank: Edytuj
   posts: Edytuj posty
   pages: Edytuj strony
   categories: Edytuj kategorie
   banner: Edytuj baner
+  content: Edytuj zawartość
+Delete: Usuń
 Back:
   to:
     homepage: Powrót do strony głównej
+    post:
+      panel: Powrót do panelu postów
+    category:
+      panel: Powrót do panelu kategorii
+    page:
+      panel: Powrót do panelu stron
+    banner:
+      panel: Powrót do panelu baneru
+Title: Tytuł
+Content: Treść
+Actions: Akcje
+Category: Kategoria
+Post date: Data publikacji 
+Post time: Czas publikacji
+You are editing: Edytujesz
+You are adding a new: Dodajesz nową/y
+Submit: Zatwierdź
+Name: Nazwa
+Add new post: Dodaj nowy post
+Add new category: Dodaj nową kategorię
+Category name: Nazwa kategorii
+Page name: Nazwa strony
+Page title displayed above content: Tytuł strony wyświetlony nad zawartością
+You can add HTML tags too e.g. <b>Bold text</b>: Możesz dodać również tagi HTML np. <b>Pogrubiony tekst</b>
+Banner panel: Panel baneru
+Change banner: Zmień baner
+Change current banner: Zmień aktualny baner
+Best resolution: Najlepsza rozdzielczość
+Supported image extension: Wspierane rozszerzenie pliku
+Current banner: Aktualny baner
+Disable banner: Wyłącz baner
+Activate banner: Aktywuj baner
+Image upload success!: Przesłano zdjęcie pomyślnie!
+Image upload failed!: Nie udało się przesłać zdjęcia!
+Upload image: Prześlij zdjęcie
+

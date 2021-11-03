@@ -2,21 +2,21 @@
 
 {% block main %}
 
-<h1 class="pb-2">Banner panel</h1>
+<h1 class="pb-2">{% trans %}Banner panel{% endtrans %}</h1>
 
-<h3>Current banner:</h3>
+<h3>{% trans %}Current banner{% endtrans %}:</h3>
 <div class="container-fluid p-0">
     <img class="w-100" height="300px" src="{{ asset('images/') ~ banner.image }}" alt="{{banner.altText}}"/>
 </div>
 <div class="d-flex justify-content-center p-4">
-<a href="{{path('app_admin_banner_change')}}" class="btn btn-primary m-1">Change current banner</a>
+<a href="{{path('app_admin_banner_change')}}" class="btn btn-primary m-1">{% trans %}Change current banner{% endtrans %}</a>
 <a href="{{path('app_admin_banner_disable',{'banner':banner.id})}}"
 {% if banner.active %}
     class="btn btn-danger m-1">
-    Disable banner
+    {% trans %}Disable banner{% endtrans %}
 {% else %}
     class="btn btn-success m-1">
-    Active banner
+    {% trans %}Activate banner{% endtrans %}
 {% endif %}
 </a>
 </div>

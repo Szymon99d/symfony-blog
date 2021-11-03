@@ -1,8 +1,16 @@
 Edit:
+  blank: Edit
   posts: Edit posts
   pages: Edit pages
   categories: Edit categories
   banner: Edit banner
+  content: Edit content
 Back:
   to:
     homepage: Back to homepage
+    post:
+     panel: Back to post panel
+    category:
+      panel: Back to category panel
+    page:
+      panel: Back to page panel

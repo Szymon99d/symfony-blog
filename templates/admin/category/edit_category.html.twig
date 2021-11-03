@@ -7,11 +7,11 @@
 
 {% if category.id != null %}
 <div class="my-4">
-    <h3>You are editing <span class="text-success">{{category.name}} [id {{category.id}}]</span> category</h3>
+    <h3>{% trans %}You are editing{% endtrans %} <span class="text-success">{{category.name}} [id {{category.id}}]</span> {% trans %}category{% endtrans %}</h3>
 </div>
 {% else %}
 <div class="my-4">
-    <h3>You are adding a new category</h3>
+    <h3>{% trans %}You are adding a new{% endtrans %} {% trans %}category{% endtrans %}</h3>
 </div>
 {% endif %}
 {{form_start(categoryForm)}}
@@ -20,7 +20,7 @@
 {{form_widget(categoryForm.name)}}
 
 {{form_widget(categoryForm.submit)}}
-<a href="{{path('app_admin_category_panel')}}" class="btn btn-primary">Back to category panel</a>
+<a href="{{path('app_admin_category_panel')}}" class="btn btn-primary">{% trans %}Back.to.category.panel{% endtrans %}</a>
 
 {{form_end(categoryForm)}}
 
