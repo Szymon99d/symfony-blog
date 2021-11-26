@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Category;
-use App\Entity\Page;
 use App\Entity\Post;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,20 +11,15 @@ use Symfony\Component\HttpFoundation\Response;
 
 class PageController extends AbstractController{
     #[Route(['en'=>'/about-me','pl'=>'/o-mnie'], name: 'app_about')]
-    public function aboutMe(EntityManagerInterface $em): Response
+    public function aboutMe(): Response
     {
-        $page = $em->getRepository(Page::class)->find(2);
-        return $this->render('pages/page.html.twig', [
-            'page'=>$page
+        return $this->render('pages/about_me.html.twig', [
         ]);
     }
     #[Route('/portfolio', name: 'app_portfolio')]
-    public function portfolio(EntityManagerInterface $em): Response
+    public function portfolio(): Response
     {
-        $page = $em->getRepository(Page::class)->find(3);
-
-        return $this->render('pages/page.html.twig', [
-            'page'=>$page
+        return $this->render('pages/portfolio.html.twig', [
         ]);
     }
     #[Route('/blog/{page}', name: 'app_blog', defaults:['page'=>1])]
