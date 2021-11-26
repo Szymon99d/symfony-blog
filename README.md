@@ -17,13 +17,10 @@ pdo_mysql php extension enabled
 Start your local server: `symfony serve` and go to localhost:8000 or configure a web server like Apache
 
 # Data Fixtures
-Run `php bin/console doctrine:fixtures:load` to load fake data into a database <br>
-or <br>
-import your own set of data
+Run `php bin/console doctrine:fixtures:load` to load fake data into a database
 
 # Admin panel
 1. Go to your_domain<b>/login</b>
 2. Log in to admin panel with the following credentials: <br>
 <b>Username:</b> admin <br>
 <b>Password:</b> qwerty()*
-
