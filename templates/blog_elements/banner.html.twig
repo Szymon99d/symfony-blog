@@ -1,5 +1,5 @@
 <div class="container-fluid p-0">
-    {% if banner.active %}
+    {% if banner.active and banner.image is not null %}
         <img class="w-100 d-none d-lg-block" height="300px" src="{{asset('images/') ~ banner.image }}" alt="{{banner.altText}}"/>
     {% endif %}
 </div>

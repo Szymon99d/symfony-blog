@@ -5,9 +5,13 @@
 <h1 class="pb-2">{% trans %}Banner panel{% endtrans %}</h1>
 
 <h3>{% trans %}Current banner{% endtrans %}:</h3>
-<div class="container-fluid p-0">
-    <img class="w-100" height="300px" src="{{ asset('images/') ~ banner.image }}" alt="{{banner.altText}}"/>
-</div>
+{% if banner.image is null %}
+    <h4>No banner yet</h4>
+{% else %}
+    <div class="container-fluid p-0">
+        <img class="w-100" height="300px" src="{{ asset('images/') ~ banner.image }}" alt="{{banner.altText}}"/>
+    </div>
+{% endif %}
 <div class="d-flex justify-content-center p-4">
 <a href="{{path('app_admin_banner_change')}}" class="btn btn-primary m-1">{% trans %}Change current banner{% endtrans %}</a>
 <a href="{{path('app_admin_banner_disable',{'banner':banner.id})}}"
