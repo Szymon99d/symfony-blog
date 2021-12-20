@@ -20,7 +20,7 @@ Start your local server: `symfony serve` and go to localhost:8000 or configure a
 Run `php bin/console doctrine:fixtures:load` to load fake data into a database
 
 # Admin panel
-1. Go to your_domain<b>/login</b>
+1. Go to *<b>/login</b>
 2. Log in to admin panel with the following credentials: <br>
 <b>Username:</b> admin <br>
 <b>Password:</b> qwerty()*
