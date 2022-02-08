@@ -1,0 +1,21 @@
+<div class="ps-0 col-sm-12">
+    <div class="d-flex justify-content-center pt-3">
+        <h2>{% trans %}Latest posts{% endtrans %}</h2>
+    </div>
+    <div class="row gy-5 gx-5 m-0 p-0">
+        {% for post in posts %}
+            <div class="col-md-12 col-lg-6 col-xl-3 col-xxl-3">
+                <div class="border border-2 p-2">
+                    <div class="d-flex justify-content-between">
+                            <h5>{{post.title}}</h5>
+                            {% trans %}Date{% endtrans %}: {{post.date|date("d.m.Y")}}
+                    </div>
+                    <p>{{post.content|slice(0,25)}}...</p>
+                    <a href="{{path('app_post_read',{'id':post.id})}}" class="btn btn-success w-100">
+                        {% trans %}Read more{% endtrans %}
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
