@@ -8,14 +8,14 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
-class SidebarController extends AbstractController
+class PostNavController extends AbstractController
 {
     
     public function renderSidebar(EntityManagerInterface $em) : Response
     {
         $categories = $em->getRepository(Category::class)->findAll();
-        $posts = $em->getRepository(Post::class)->findBy([],['date'=>'DESC'],5);
-        return $this->render('/blog_elements/sidebar.html.twig',[
+        $posts = $em->getRepository(Post::class)->findBy([],['date'=>'DESC'],4);
+        return $this->render('/blog_elements/post_nav.html.twig',[
             'categories'=>$categories,
             'posts'=>$posts
         ]);
