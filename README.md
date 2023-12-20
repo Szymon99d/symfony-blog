@@ -1,8 +1,8 @@
 # Simple Symfony Blog
 
 # Requirements
-Symfony 6.0.0+ <br>
-Php 8.0.9+ <br>
+Symfony 6.3.0+ <br>
+Php 8.1+ <br>
 pdo_mysql php extension enabled
 
 # Installation

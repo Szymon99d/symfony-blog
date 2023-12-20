@@ -4,9 +4,9 @@ namespace App\Repository;
 
 use App\Entity\Category;
 use App\Entity\Post;
-use Knp\Component\Pager\PaginatorInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @method Post|null find($id, $lockMode = null, $lockVersion = null)
@@ -16,7 +16,7 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class PostRepository extends ServiceEntityRepository
 {
-    private $paginator;
+    private PaginatorInterface $paginator;
     public function __construct(ManagerRegistry $registry, PaginatorInterface $paginator)
     {
         parent::__construct($registry, Post::class);
@@ -29,46 +29,43 @@ class PostRepository extends ServiceEntityRepository
     /*
     public function findByExampleField($value)
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+    return $this->createQueryBuilder('p')
+    ->andWhere('p.exampleField = :val')
+    ->setParameter('val', $value)
+    ->orderBy('p.id', 'ASC')
+    ->setMaxResults(10)
+    ->getQuery()
+    ->getResult()
+    ;
     }
-    */
+     */
 
     /*
     public function findOneBySomeField($value): ?Post
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+    return $this->createQueryBuilder('p')
+    ->andWhere('p.exampleField = :val')
+    ->setParameter('val', $value)
+    ->getQuery()
+    ->getOneOrNullResult()
+    ;
     }
-    */
+     */
 
-    public function findAllPaginated(int $page, Category | null $category)
+    public function findAllPaginated(int $page, Category | null $category = null)
     {
-        if($category!=null){
+        if ($category != null) {
             $query = $this->createQueryBuilder('p')
-            ->join('p.category','r')
-            ->where('r.id = :cid')
-            ->setParameter('cid',$category->getId())
+                ->join('p.category', 'r')
+                ->where('r.id = :cid')
+                ->setParameter('cid', $category->getId())
             //->orderBy('p.date','DESC')
-            ->getQuery();
-        }
-        else{
+                ->getQuery();
+        } else {
             $query = $this->createQueryBuilder('p')
             //->orderBy('p.date','DESC')
-            ->getQuery();
+                ->getQuery();
         }
-
-        $pagination = $this->paginator->paginate($query,$page,5,['defaultSortFieldName'=>'p.date','defaultSortDirection'=>'DESC']);
-        return $pagination;
+        return $this->paginator->paginate($query, $page, 5, ['defaultSortFieldName' => 'p.date', 'defaultSortDirection' => 'DESC']);
     }
 }

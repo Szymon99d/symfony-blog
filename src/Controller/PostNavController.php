@@ -10,14 +10,14 @@ use Symfony\Component\HttpFoundation\Response;
 
 class PostNavController extends AbstractController
 {
-    
-    public function renderSidebar(EntityManagerInterface $em) : Response
+
+    public function renderSidebar(EntityManagerInterface $em): Response
     {
         $categories = $em->getRepository(Category::class)->findAll();
-        $posts = $em->getRepository(Post::class)->findBy([],['date'=>'DESC'],4);
-        return $this->render('/blog_elements/post_nav.html.twig',[
-            'categories'=>$categories,
-            'posts'=>$posts
+        $posts = $em->getRepository(Post::class)->findBy([], ['date' => 'DESC'], 4);
+        return $this->render('/blog_elements/post_nav.html.twig', [
+            'categories' => $categories,
+            'posts' => $posts,
         ]);
     }
 }

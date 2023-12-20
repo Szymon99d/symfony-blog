@@ -14,11 +14,11 @@ class CategoryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name',TextType::class,[
-                'attr'=>['class'=>'form-control mb-3']
+            ->add('name', TextType::class, [
+                'attr' => ['class' => 'form-control mb-3'],
             ])
-            ->add('submit',SubmitType::class,[
-                'attr'=>['class'=>'btn btn-success']
+            ->add('submit', SubmitType::class, [
+                'attr' => ['class' => 'btn btn-success'],
             ])
         ;
     }

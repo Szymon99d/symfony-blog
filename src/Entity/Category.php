@@ -52,14 +52,14 @@ class Category
     }
 
     /**
-     * @return Collection|post[]
+     * @return Collection|Post[]
      */
     public function getPost(): Collection
     {
         return $this->post;
     }
 
-    public function addPost(post $post): self
+    public function addPost(Post $post): self
     {
         if (!$this->post->contains($post)) {
             $this->post[] = $post;
@@ -69,13 +69,11 @@ class Category
         return $this;
     }
 
-    public function removePost(post $post): self
+    public function removePost(Post $post): self
     {
-        if ($this->post->removeElement($post)) {
-            // set the owning side to null (unless already changed)
-            if ($post->getCategory() === $this) {
-                $post->setCategory(null);
-            }
+        // set the owning side to null (unless already changed)
+        if ($this->post->removeElement($post) && $post->getCategory() === $this) {
+            $post->setCategory(null);
         }
 
         return $this;

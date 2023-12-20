@@ -15,22 +15,22 @@ class PageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title',TextType::class,[
-                'attr'=>['class'=>'form-control mb-3'],
-                'help'=>'Page title displayed above content',
-                'help_attr'=>['class'=>'form-text']
+            ->add('title', TextType::class, [
+                'attr' => ['class' => 'form-control mb-3'],
+                'help' => 'Page title displayed above content',
+                'help_attr' => ['class' => 'form-text'],
             ])
-            ->add('content',TextareaType::class,[
-                'attr'=>['class'=>'form-control mb-3','rows'=>'25'],
-                'help'=>'You can add HTML tags too e.g. <b>Bold text</b>',
-                'help_attr'=>['class'=>'form-text']
+            ->add('content', TextareaType::class, [
+                'attr' => ['class' => 'form-control mb-3', 'rows' => '25'],
+                'help' => 'You can add HTML tags too e.g. <b>Bold text</b>',
+                'help_attr' => ['class' => 'form-text'],
             ])
-            ->add('pageName',TextType::class,[
-                'attr'=>['class'=>'form-control mb-3'],
-                'disabled'=>true
+            ->add('pageName', TextType::class, [
+                'attr' => ['class' => 'form-control mb-3'],
+                'disabled' => true,
             ])
-            ->add('submit',SubmitType::class,[
-                'attr'=>['class'=>'btn btn-success']
+            ->add('submit', SubmitType::class, [
+                'attr' => ['class' => 'btn btn-success'],
             ])
         ;
     }
