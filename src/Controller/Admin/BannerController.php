@@ -24,6 +24,7 @@ class BannerController extends AbstractController
             'banner' => $banner,
         ]);
     }
+    
     #[Route(['en' => '/admin/change-banner', 'pl' => '/admin/zmień-baner'], name: 'app_admin_banner_change')]
     public function bannerChange(EntityManagerInterface $em, Request $request): Response
     {
@@ -65,6 +66,7 @@ class BannerController extends AbstractController
             'form' => $form,
         ]);
     }
+
     #[Route(['en' => '/admin/disable-banner/{banner}', 'pl' => '/admin/wyłącz-baner/{banner}'], name: 'app_admin_banner_disable')]
     public function bannerDisable(EntityManagerInterface $em, Banner $banner): Response
     {

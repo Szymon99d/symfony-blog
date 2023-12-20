@@ -26,20 +26,20 @@ class AdminController extends AbstractController
     {
         return $this->render('/admin/admin_dashboard.html.twig');
     }
+
     #[Route(['en' => '/admin/post-panel/{page}', 'pl' => '/admin/panel-postów/{page}'], name: 'app_admin_post_panel',
         defaults: ['page' => 1]
     )]
     public function adminPostPanel(int $page): Response
     {
-
         $posts = $this->em->getRepository(Post::class)->findAllPaginated($page);
 
         return $this->render('/admin/posts/post_panel.html.twig', [
             'posts' => $posts,
         ]);
     }
-    #[Route(['en' => '/admin/edit/post/{post}', 'pl' => '/admin/edytuj/post/{post}'], name: 'app_admin_edit_post'
-    )]
+
+    #[Route(['en' => '/admin/edit/post/{post}', 'pl' => '/admin/edytuj/post/{post}'], name: 'app_admin_edit_post')]
     public function adminEditPost(Post $post, Request $request): Response
     {
 
@@ -61,11 +61,10 @@ class AdminController extends AbstractController
             'post' => $post,
         ]);
     }
-    #[Route(['en' => '/admin/create/post', 'pl' => '/admin/dodaj/post'], name: 'app_admin_create_post'
-    )]
+
+    #[Route(['en' => '/admin/create/post', 'pl' => '/admin/dodaj/post'], name: 'app_admin_create_post')]
     public function adminCreatePost(Request $request): Response
     {
-
         $post = new Post();
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
@@ -85,8 +84,8 @@ class AdminController extends AbstractController
             'post' => $post,
         ]);
     }
-    #[Route(['en' => '/admin/delete/post/{post}', 'pl' => '/admin/usuń/post/{post}'], name: 'app_admin_delete_post'
-    )]
+
+    #[Route(['en' => '/admin/delete/post/{post}', 'pl' => '/admin/usuń/post/{post}'], name: 'app_admin_delete_post')]
     public function adminDeletePost(Post $post): Response
     {
         $this->em->remove($post);
@@ -106,8 +105,8 @@ class AdminController extends AbstractController
             'category' => $category,
         ]);
     }
-    #[Route(['en' => '/admin/edit/category/{category}', 'pl' => '/admin/edytuj/kategorię/{category}'], name: 'app_admin_edit_category'
-    )]
+
+    #[Route(['en' => '/admin/edit/category/{category}', 'pl' => '/admin/edytuj/kategorię/{category}'], name: 'app_admin_edit_category')]
     public function adminEditCategory(Category $category, Request $request): Response
     {
 
@@ -126,8 +125,8 @@ class AdminController extends AbstractController
             'category' => $category,
         ]);
     }
-    #[Route(['en' => '/admin/create/category', 'pl' => '/admin/dodaj/kategorię'], name: 'app_admin_create_category'
-    )]
+
+    #[Route(['en' => '/admin/create/category', 'pl' => '/admin/dodaj/kategorię'], name: 'app_admin_create_category')]
     public function adminCreateCategory(Request $request): Response
     {
 
@@ -147,8 +146,8 @@ class AdminController extends AbstractController
             'category' => $category,
         ]);
     }
-    #[Route(['en' => '/admin/delete/category/{category}', 'pl' => '/admin/usuń/kategorię/{category}'], name: 'app_admin_delete_category'
-    )]
+
+    #[Route(['en' => '/admin/delete/category/{category}', 'pl' => '/admin/usuń/kategorię/{category}'], name: 'app_admin_delete_category')]
     public function adminDeleteCategory(Category $category): Response
     {
         $this->em->remove($category);

@@ -22,50 +22,20 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
         $this->paginator = $paginator;
     }
-
-    // /**
-    //  * @return Post[] Returns an array of Post objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    
+    public function findAllPaginated(int $page)
     {
-    return $this->createQueryBuilder('p')
-    ->andWhere('p.exampleField = :val')
-    ->setParameter('val', $value)
-    ->orderBy('p.id', 'ASC')
-    ->setMaxResults(10)
-    ->getQuery()
-    ->getResult()
-    ;
+        $query = $this->createQueryBuilder('p')->getQuery();
+        return $this->paginator->paginate($query, $page, 5, ['defaultSortFieldName' => 'p.date', 'defaultSortDirection' => 'DESC']);
     }
-     */
 
-    /*
-    public function findOneBySomeField($value): ?Post
+    public function findAllPaginatedByCategory(int $page, Category $category)
     {
-    return $this->createQueryBuilder('p')
-    ->andWhere('p.exampleField = :val')
-    ->setParameter('val', $value)
-    ->getQuery()
-    ->getOneOrNullResult()
-    ;
-    }
-     */
-
-    public function findAllPaginated(int $page, Category | null $category = null)
-    {
-        if ($category != null) {
-            $query = $this->createQueryBuilder('p')
-                ->join('p.category', 'r')
-                ->where('r.id = :cid')
-                ->setParameter('cid', $category->getId())
-            //->orderBy('p.date','DESC')
-                ->getQuery();
-        } else {
-            $query = $this->createQueryBuilder('p')
-            //->orderBy('p.date','DESC')
-                ->getQuery();
-        }
+        $query = $this->createQueryBuilder('p')
+            ->join('p.category', 'r')
+            ->where('r.id = :cid')
+            ->setParameter('cid', $category->getId())
+            ->getQuery();
         return $this->paginator->paginate($query, $page, 5, ['defaultSortFieldName' => 'p.date', 'defaultSortDirection' => 'DESC']);
     }
 }

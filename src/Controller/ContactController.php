@@ -42,7 +42,6 @@ class ContactController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->addFlash('success', 'Message was sent successfully');
             $data = $form->getData();
             $message = (new Email())
                 ->from($data['email'])
@@ -52,6 +51,7 @@ class ContactController extends AbstractController
 
             try {
                 $mailer->send($message);
+                $this->addFlash('success', 'Message was sent successfully');
             } catch (TransportExceptionInterface $e) {
                 $this->addFlash('danger', 'Something went wrong, message was not sent.');
             }
