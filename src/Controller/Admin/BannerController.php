@@ -18,7 +18,6 @@ class BannerController extends AbstractController
     #[Route(['en' => '/admin/banner-panel', 'pl' => '/admin/panel-baneru'], name: 'app_admin_banner_panel')]
     public function bannerDashboard(EntityManagerInterface $em): Response
     {
-
         $banner = $em->getRepository(Banner::class)->find(1);
         return $this->render('/admin/banner/banner_panel.html.twig', [
             'banner' => $banner,
@@ -28,7 +27,6 @@ class BannerController extends AbstractController
     #[Route(['en' => '/admin/change-banner', 'pl' => '/admin/zmień-baner'], name: 'app_admin_banner_change')]
     public function bannerChange(EntityManagerInterface $em, Request $request): Response
     {
-
         $form = $this->createFormBuilder()
             ->add('image', FileType::class, [
                 'attr' => ['accept' => '.png', 'class' => 'form-control mb-4'],

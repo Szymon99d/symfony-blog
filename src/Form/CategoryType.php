@@ -3,13 +3,13 @@
 namespace App\Form;
 
 use App\Entity\Category;
-use Symfony\Component\Form\AbstractType;
+use App\Form\EventListener\Base\BaseFormListener;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CategoryType extends AbstractType
+class CategoryType extends BaseType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -20,6 +20,7 @@ class CategoryType extends AbstractType
             ->add('submit', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-success'],
             ])
+            ->addEventSubscriber(new BaseFormListener($this->em))
         ;
     }
 

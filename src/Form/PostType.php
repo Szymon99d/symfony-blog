@@ -3,7 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Post;
-use Symfony\Component\Form\AbstractType;
+use App\Form\EventListener\Base\BaseFormListener;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -11,7 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PostType extends AbstractType
+class PostType extends BaseType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -34,6 +34,7 @@ class PostType extends AbstractType
             ->add('submit', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-success'],
             ])
+            ->addEventSubscriber(new BaseFormListener($this->em))
         ;
     }
 

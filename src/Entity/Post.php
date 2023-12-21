@@ -33,7 +33,7 @@ class Post
     private $date;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="post")
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="posts")
      */
     private $category;
 
