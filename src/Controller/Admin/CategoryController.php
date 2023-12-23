@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Config\Message\MessageType;
 use App\Entity\Category;
 use App\Form\Type\CategoryType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -32,6 +33,10 @@ class CategoryController extends AbstractController
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->addFlash(MessageType::SUCCESS, 'Record saved successfully');
+        }
+
         return $this->render('/admin/category/edit_category.html.twig', [
             'categoryForm' => $form,
             'category' => $category,
@@ -46,6 +51,7 @@ class CategoryController extends AbstractController
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
+            $this->addFlash(MessageType::SUCCESS, 'Record saved successfully');
             return $this->redirectToRoute("app_admin_edit_category", ['category' => $category->getId()]);
         }
 

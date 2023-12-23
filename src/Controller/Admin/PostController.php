@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Config\Message\MessageType;
 use App\Entity\Post;
 use App\Form\Type\PostType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -32,6 +33,10 @@ class PostController extends AbstractController
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->addFlash(MessageType::SUCCESS, 'Record saved successfully');
+        }
+
         return $this->render('/admin/posts/edit_post.html.twig', [
             'postForm' => $form,
             'post' => $post,
@@ -46,6 +51,7 @@ class PostController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $this->addFlash(MessageType::SUCCESS, 'Record saved successfully');
             return $this->redirectToRoute("app_admin_edit_post", ['post' => $post->getId()]);
         }
 
