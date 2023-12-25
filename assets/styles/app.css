@@ -11,4 +11,19 @@
   background-color: #105473;
 }
 
+.post-category-badge {
+  background-color: #105473;
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+}
+
+.post-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
 /*# sourceMappingURL=app.css.map */

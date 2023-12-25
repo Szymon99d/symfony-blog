@@ -19,7 +19,6 @@
 .phpunit.result.cache
 ###< phpunit/phpunit ###
 
-/public/images
 /migrations
 
 /.vscode

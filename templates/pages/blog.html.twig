@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="d-flex justify-content-center">
-    <h2> -- {% trans %} Page {% endtrans %} {{currentPage}} {% trans %} of {% endtrans %} {{ posts.pageCount }} -- </h2>
+    <h4> -- {% trans %} Page {% endtrans %} {{currentPage}} {% trans %} of {% endtrans %} {{ posts.pageCount }} -- </h4>
 </div>
 {% if app.request.get('_route') == 'app_blog_category' %}
 <div class="d-flex justify-content-center">
@@ -14,22 +14,33 @@
     {% endif %}
 </div>
 {% endif %}
+<div class="row gy-5 gx-5 m-0 p-0 mt-2">
 {% for post in posts %}
-    <div class="container-fluid border border-4 my-4">
-        <h2>{{post.title}}</h2>
-        <label>{% trans %}Date{% endtrans %}: {{post.date|date('d.m.Y')}}<i class="p-1 bi bi-calendar3"></i></label>
-            {% if post.category != null %}
-            <a href="{{path('app_blog_category',{'category':post.category.id})}}" class="btn btn-sm btn-primary">{{post.category.name}}</a>
-            {% endif %}
-        <hr>
-        {% if post.content|length > 300 %}
-            <p>{{post.content|slice(0,300)}}...</p>
-        {% else %}
-            <p>{{post.content}}</p>
-        {% endif %}
-        <a href="{{path('app_post_read',{'id':post.getId()})}}" class="btn btn-outline-success mb-2">{% trans %}Read more{% endtrans %}</a>
+    <div class="row w-100 pb-5">
+        <div class="col-sm-5 col-md-5 col-lg-5 col-xl-3">
+            <img src="{{ asset('images/no-preview.jpg') }}" class="img-thumbnail" alt="No preview">
+        </div>
+            
+        <div class="col-sm-7 col-md-7 col-lg-7 col-xl-9 post-col">
+                <div>
+                    <h4>{{post.title}}</h4>
+                    <h6 class="post-title mb-2">
+                        <i class="p-1 bi bi-calendar3"></i> {{post.date|date("d.m.Y")}}
+                        {% if post.category != null %}
+                            <a href="{{path('app_blog_category',{'category':post.category.id})}}" class="badge post-category-badge">{{post.category.name}}</a>
+                        {% endif %}
+                    </h6>
+                </div>
+                {% if post.content|length > 300 %}
+                    <p>{{post.content|slice(0,300)}}...</p>
+                {% else %}
+                    <p>{{post.content}}</p>
+                {% endif %}
+                <a href="{{path('app_post_read',{'id':post.getId()})}}" class="btn btn-success mb-2 margin-top">{% trans %}Read more{% endtrans %}</a>
+        </div>
     </div>
 {% endfor %}
+</div>
 
 <div class="d-flex justify-content-center">
 {{knp_pagination_render(posts)}}
