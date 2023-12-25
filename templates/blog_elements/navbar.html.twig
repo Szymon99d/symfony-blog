@@ -7,40 +7,55 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{{path('app_homepage')}}">{% trans %}Homepage{% endtrans %}</a>
+          <a class="nav-link" aria-current="page" href="{{path('app_homepage')}}"><i class="bi bi-house"></i> {% trans %}Homepage{% endtrans %}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{{path('app_about')}}">{% trans %}About me{% endtrans %}</a>
+          <a class="nav-link" aria-current="page" href="{{path('app_about')}}"><i class="bi bi-star-fill"></i> {% trans %}About me{% endtrans %}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{{path('app_portfolio')}}">{% trans %}Portfolio{% endtrans %}</a>
+          <a class="nav-link" aria-current="page" href="{{path('app_portfolio')}}"><i class="bi bi-suitcase-lg-fill"></i> {% trans %}Portfolio{% endtrans %}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{{path('app_blog')}}">{% trans %}Blog{% endtrans %}</a>
+          <a class="nav-link" aria-current="page" href="{{path('app_blog')}}"><i class="bi bi-layout-text-window"></i> {% trans %}Blog{% endtrans %}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{{path('app_contact')}}">{% trans %}Contact{% endtrans %}</a>
+          <a class="nav-link" aria-current="page" href="{{path('app_contact')}}"><i class="bi bi-person-lines-fill"></i> {% trans %}Contact{% endtrans %}</a>
         </li>
-        {% if is_granted('ROLE_ADMIN') %}
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="{{path('app_admin')}}">{% trans %}Admin dashboard{% endtrans %}</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="{{path('app_logout')}}">{% trans %}Logout{% endtrans %}</a>
-          </li>
-        {% endif %}
       </ul>
       <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{{path('app_homepage' ,{'_locale':'en'})}}">
-          <i class="flag-icon flag-icon-us mx-2"></i>English
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {% trans %}Language{% endtrans %}
           </a>
+          <ul class="dropdown-menu bg-dark">
+            <li class="dropdown-item">
+              <a class="nav-link" aria-current="page" href="{{path('app_homepage' ,{'_locale':'en'})}}">
+              <i class="flag-icon flag-icon-us mx-2"></i>English 
+                {% if app.request.getLocale() == 'en' %}
+                  <i class="bi bi-check"></i>
+                {% endif %}
+              </a>
+            </li>
+            <li class="dropdown-item">
+              <a class="nav-link" aria-current="page" href="{{path('app_homepage' ,{'_locale':'pl'})}}">
+              <i class="flag-icon flag-icon-pl mx-2"></i>Polski
+                {% if app.request.getLocale() == 'pl' %}
+                  <i class="bi bi-check"></i>
+                {% endif %}
+              </a>
+            </li>
+          </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{{path('app_homepage' ,{'_locale':'pl'})}}">
-          <i class="flag-icon flag-icon-pl mx-2"></i>Polski
-          </a>
-        </li>
+
+        {% if is_granted('ROLE_ADMIN') %}
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="{{path('app_admin')}}"><i class="bi bi-list-columns"></i> {% trans %}Admin dashboard{% endtrans %}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="{{path('app_logout')}}"><i class="bi bi-box-arrow-left"></i> {% trans %}Logout{% endtrans %}</a>
+          </li>
+        {% endif %}
       </ul>
     </div>
   </div>
