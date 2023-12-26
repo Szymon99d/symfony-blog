@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Config\Message\MessageType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -51,9 +52,9 @@ class ContactController extends AbstractController
 
             try {
                 $mailer->send($message);
-                $this->addFlash('success', 'Message was sent successfully');
+                $this->addFlash(MessageType::SUCCESS, 'Message was sent successfully');
             } catch (TransportExceptionInterface $e) {
-                $this->addFlash('danger', 'Something went wrong, message was not sent.');
+                $this->addFlash(MessageType::DANGER, 'Something went wrong, message was not sent.');
             }
 
         }

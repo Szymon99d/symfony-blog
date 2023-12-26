@@ -3,7 +3,7 @@
 namespace App\Form\Type;
 
 use App\Entity\Category;
-use App\Form\EventListener\Base\BaseFormListener;
+use App\Form\EventListener\Base\BaseEntityFormListener;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,7 +20,7 @@ class CategoryType extends BaseType
             ->add('submit', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-success'],
             ])
-            ->addEventSubscriber(new BaseFormListener($this->em))
+            ->addEventSubscriber(new BaseEntityFormListener($this->em))
         ;
     }
 

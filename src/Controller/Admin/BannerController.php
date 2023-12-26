@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Config\Message\MessageType;
 use App\Entity\Banner;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -41,7 +42,7 @@ class BannerController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $image = $form->get('image')->getData();
             if ($image->guessExtension() != "png") {
-                $this->addFlash('danger', 'Image upload failed!');
+                $this->addFlash(MessageType::DANGER, 'Image upload failed!');
             } else {
                 try {
                     $fileName = 'banner.' . $image->guessExtension();
@@ -49,9 +50,9 @@ class BannerController extends AbstractController
                         $this->getParameter('image_path'),
                         $fileName
                     );
-                    $this->addFlash('success', 'Image upload success!');
+                    $this->addFlash(MessageType::SUCCESS, 'Image upload success!');
                 } catch (FileException $e) {
-                    $this->addFlash('danger', 'Image upload failed!');
+                    $this->addFlash(MessageType::DANGER, 'Image upload failed!');
                 }
                 $banner = $em->getRepository(Banner::class)->find(1);
                 $banner->setImage($fileName);

@@ -8,14 +8,14 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\Event\SubmitEvent;
 use Symfony\Component\Form\FormEvents;
 
-class BaseFormListener implements EventSubscriberInterface
+class BaseEntityFormListener implements EventSubscriberInterface
 {
     public function __construct(protected EntityManagerInterface $em) {}
 
     public static function getSubscribedEvents(): array
     {
         return [
-            FormEvents::SUBMIT   => 'onSubmit',
+            FormEvents::SUBMIT   => ['onSubmit', 0],
         ];
     }
 
