@@ -5,36 +5,24 @@ namespace App\Entity;
 use App\Repository\PostRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=PostRepository::class)
- */
+#[ORM\Entity(repositoryClass: PostRepository::class)]
 class Post
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $title;
 
-    /**
-     * @ORM\Column(type="text")
-     */
+    #[ORM\Column(type: 'text')]
     private $content;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
+    #[ORM\Column(type: 'datetime')]
     private $date;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="posts")
-     */
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'posts')]
     private $category;
 
     public function getId(): ?int

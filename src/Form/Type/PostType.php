@@ -3,7 +3,7 @@
 namespace App\Form\Type;
 
 use App\Entity\Post;
-use App\Form\EventListener\Base\BaseEntityFormListener;
+use App\Form\EventSubscriber\Base\BaseEntityFormSubscriber;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -34,7 +34,7 @@ class PostType extends BaseType
             ->add('submit', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-success'],
             ])
-            ->addEventSubscriber(new BaseEntityFormListener($this->em))
+            ->addEventSubscriber(new BaseEntityFormSubscriber($this->em))
         ;
     }
 

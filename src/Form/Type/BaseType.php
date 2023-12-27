@@ -7,7 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class BaseType extends AbstractType
+abstract class BaseType extends AbstractType
 {
     public function __construct(protected EntityManagerInterface $em) {}
 
