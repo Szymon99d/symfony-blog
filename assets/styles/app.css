@@ -26,4 +26,9 @@
   flex-wrap: wrap;
 }
 
+.language-option:hover {
+  background-color: rgb(54, 54, 54);
+  transition: 0.2s;
+}
+
 /*# sourceMappingURL=app.css.map */
