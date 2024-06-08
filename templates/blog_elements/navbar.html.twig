@@ -31,7 +31,7 @@
           <ul class="dropdown-menu bg-dark dropdown-menu-end">
             <li class="dropdown-item">
               <a class="nav-link" aria-current="page" href="{{path('app_homepage' ,{'_locale':'en'})}}">
-              <i class="flag-icon flag-icon-us mx-2"></i>English 
+              <i class="flag-icon flag-icon-us mx-2"></i>{% trans %}English{% endtrans %}
                 {% if app.request.getLocale() == 'en' %}
                   <i class="bi bi-check"></i>
                 {% endif %}
@@ -39,7 +39,7 @@
             </li>
             <li class="dropdown-item">
               <a class="nav-link" aria-current="page" href="{{path('app_homepage' ,{'_locale':'pl'})}}">
-              <i class="flag-icon flag-icon-pl mx-2"></i>Polski
+              <i class="flag-icon flag-icon-pl mx-2"></i>{% trans %}Polish{% endtrans %}
                 {% if app.request.getLocale() == 'pl' %}
                   <i class="bi bi-check"></i>
                 {% endif %}
