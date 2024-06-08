@@ -4,7 +4,7 @@
 {% block content %}
     <div class="container-fluid my-4">
         <h2>{{post.title}}</h2>
-        <i class="p-1 bi bi-calendar3"></i> {{post.date|date('d.m.Y')}}
+        <i class="p-1 bi bi-calendar3"></i> {{post.dateEntered|date('d.m.Y')}}
             {% if post.category != null %}
             <a href="{{path('app_blog_category',{'category':post.category.id})}}" class="badge post-category-badge">{{post.category.name}}</a>
             {% endif %}

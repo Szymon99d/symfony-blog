@@ -22,12 +22,6 @@ class PostType extends BaseType
             ->add('content', TextareaType::class, [
                 'attr' => ['class' => 'form-control mb-3'],
             ])
-            ->add('date', DateTimeType::class, [
-                'date_widget' => 'single_text',
-                'time_widget' => 'single_text',
-                'date_label' => 'Post date',
-                'time_label' => 'Post time',
-            ])
             ->add('category', null, [
                 'attr' => ['class' => 'form-select mb-3'],
             ])

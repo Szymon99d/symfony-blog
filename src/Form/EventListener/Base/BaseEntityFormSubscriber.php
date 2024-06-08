@@ -23,7 +23,11 @@ class BaseEntityFormSubscriber implements EventSubscriberInterface
     public function onSubmit(SubmitEvent $event): void
     {
         try {
-            $this->em->persist($event->getData());
+            $entity = $event->getData();
+            if(method_exists($entity, 'beforeSave')){
+                $entity = $entity->beforeSave();
+            }
+            $this->em->persist($entity);
             $this->em->flush();
         } catch (Exception $e) {
             throw new Exception($e->getMessage());

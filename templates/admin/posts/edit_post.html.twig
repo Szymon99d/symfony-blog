@@ -6,7 +6,7 @@
 
 {% if post.id != null %}
 <div class="my-4">
-    <h3>{% trans %}You are editing {% endtrans %} <span class="text-success">{{post.title}} [id {{post.id}}]</span> post</h3>
+    <h3>{% trans %}You are editing {% endtrans %} <span class="text-success">{{post.title}}</span> post</h3>
 </div>
 {% else %}
 <div class="my-4">
@@ -17,13 +17,6 @@
 
 {{form_label(postForm.title)}}
 {{form_widget(postForm.title)}}
-
-
-{{form_label(postForm.date.date)}}
-{{form_widget(postForm.date.date,{'attr':{'class':'form-control mb-3'}})}}
-{{form_label(postForm.date.time)}}
-{{form_widget(postForm.date.time,{'attr':{'class':'form-control mb-3'}})}}
-
 
 {{form_label(postForm.content)}}
 {{form_widget(postForm.content)}}

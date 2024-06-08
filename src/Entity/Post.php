@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\PostRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
@@ -20,7 +21,10 @@ class Post
     private $content;
 
     #[ORM\Column(type: 'datetime')]
-    private $date;
+    private $dateEntered;
+
+    #[ORM\Column(type: 'datetime')]
+    private $dateModified;
 
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'posts')]
     private $category;
@@ -54,14 +58,26 @@ class Post
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getDateEntered(): ?\DateTimeInterface
     {
-        return $this->date;
+        return $this->dateEntered;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setDateEntered(\DateTimeInterface $dateEntered): self
     {
-        $this->date = $date;
+        $this->dateEntered = $dateEntered;
+
+        return $this;
+    }
+
+    public function getDateModified(): ?\DateTimeInterface
+    {
+        return $this->dateModified;
+    }
+
+    public function setDateModified(\DateTimeInterface $dateModified): self
+    {
+        $this->dateModified = $dateModified;
 
         return $this;
     }
@@ -75,6 +91,16 @@ class Post
     {
         $this->category = $category;
 
+        return $this;
+    }
+
+    public function beforeSave(): self
+    {
+        $nowDate = new DateTime();
+        if(empty($this->getDateEntered())){
+            $this->setDateEntered($nowDate);
+        }
+        $this->setDateModified($nowDate);
         return $this;
     }
 }

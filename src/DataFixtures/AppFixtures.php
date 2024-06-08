@@ -34,7 +34,8 @@ class AppFixtures extends Fixture
             $post->setContent("Add more, delete or edit this post");
             $datetime = new DateTime('now');
             $datetime->add(new DateInterval("P" . $i . "D"));
-            $post->setDate($datetime);
+            $post->setDateEntered($datetime);
+            $post->setDateModified($datetime);
             $post->setCategory($category);
             $manager->persist($post);
         }

@@ -22,7 +22,7 @@
             {% else %}
               <td>{{post.content}}</td>
             {% endif %}
-            <td>{{post.date|date('d/m/Y')}}</td>
+            <td>{{post.dateEntered|date('d/m/Y')}}</td>
             <td><a href="{{path('app_admin_edit_post',{'post':post.id})}}" class="btn btn-primary mx-1">{% trans %}Edit.blank{% endtrans %}</a>
             <a href="{{path('app_admin_delete_post',{'post':post.id})}}" 
             onclick="return confirm('Are you sure you want to delete this post?')" class="btn btn-danger">{% trans %}Delete{% endtrans %}</a></td>
