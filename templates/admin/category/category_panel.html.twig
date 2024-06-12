@@ -10,8 +10,8 @@
 <table class="table table-striped mt-4">
   <thead>
     <tr>
-      <th scope="col">Id</th>
-      <th scope="col">{% trans %}Category name{% endtrans %}</th>
+      <th class="th-sortable" scope="col">{{ knp_pagination_sortable(category, 'Id'|trans, 'c.id')}}</th>
+      <th class="th-sortable" scope="col">{{ knp_pagination_sortable(category, 'Category name'|trans, 'c.name')}}</th>
       <th scope="col">{% trans %}Actions{% endtrans %}</th>
     </tr>
   </thead>

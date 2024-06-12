@@ -10,10 +10,10 @@
 <table class="table table-striped mt-4">
   <thead>
     <tr>
-      <th scope="col">Id</th>
-      <th scope="col">{% trans %}Title{% endtrans %}</th>
-      <th scope="col">{% trans %}Content{% endtrans %}</th>
-      <th scope="col">{% trans %}Date{% endtrans %}</th>
+      <th class="th-sortable" scope="col">{{ knp_pagination_sortable(posts, 'Id'|trans, 'p.id')}}</th>
+      <th class="th-sortable" scope="col">{{ knp_pagination_sortable(posts, 'Title'|trans, 'p.title')}}</th>
+      <th class="th-sortable" scope="col">{{ knp_pagination_sortable(posts, 'Content'|trans, 'p.content')}}</th>
+      <th class="th-sortable" scope="col">{{ knp_pagination_sortable(posts, 'Date.Entered'|trans, 'p.dateEntered')}}</th>
       <th scope="col">{% trans %}Actions{% endtrans %}</th>
     </tr>
   </thead>
