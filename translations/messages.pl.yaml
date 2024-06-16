@@ -6,7 +6,9 @@ Homepage: Strona główna
 About me: O mnie
 Latest posts: Najnowsze posty
 Categories: Kategorie
-Date: Data
+Date:
+  Entered: Data utworzenia
+  Modified: Data modyfikacji
 Blog: Blog
 Portfolio: Portfolio
 Read more: Czytaj dalej
@@ -85,4 +87,11 @@ Image upload success!: Przesłano zdjęcie pomyślnie!
 Image upload failed!: Nie udało się przesłać zdjęcia!
 Upload image: Prześlij zdjęcie
 No banner yet: Nie masz jeszcze baneru
-
+Error when trying to save this record: Błąd podczas próby zapisania tego rekordu
+Record saved successfully: Pomyślnie zapisano rekord
+Language: Język
+English: Angielski
+Polish: Polski
+It looks like there are no posts yet: Wygląda na to, że nie ma jeszcze żadnych postów
+Delete selected posts: Usuń zaznaczone posty
+Delete selected categories: Usuń zaznaczone kategorie

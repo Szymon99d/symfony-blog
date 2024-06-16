@@ -1,74 +1,59 @@
-<?php 
+<?php
 
 namespace App\Controller\Admin;
 
+use App\Config\Message\MessageType;
 use App\Entity\Banner;
+use App\Form\Type\BannerType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class BannerController extends AbstractController{
-    
-    #[Route(['en'=>'/admin/banner-panel','pl'=>'/admin/panel-baneru'], name: 'app_admin_banner_panel')]
-    public function bannerDashboard(EntityManagerInterface $em): Response{
-        
+class BannerController extends AbstractController
+{
+
+    #[Route(['en' => '/admin/banner-panel', 'pl' => '/admin/panel-baneru'], name: 'app_admin_banner_panel')]
+    public function dashboard(EntityManagerInterface $em): Response
+    {
         $banner = $em->getRepository(Banner::class)->find(1);
-        return $this->render('/admin/banner/banner_panel.html.twig',[
-            'banner'=>$banner
+        return $this->render('/admin/banner/banner_panel.html.twig', [
+            'banner' => $banner,
         ]);
     }
-    #[Route(['en'=>'/admin/change-banner','pl'=>'/admin/zmień-baner'], name: 'app_admin_banner_change')]
-    public function bannerChange(EntityManagerInterface $em, Request $request): Response{
-        
-        $form = $this->createFormBuilder()
-            ->add('image', FileType::class,[
-                'attr'=>['accept'=>'.png', 'class'=>'form-control mb-4'],
-                'label'=>'Upload image'
-            ])
-            ->add('submit',SubmitType::class,[
-                'attr'=>['class'=>'btn btn-success w-25']
-            ])
-            ->getForm();
-                
+
+    #[Route(['en' => '/admin/change-banner', 'pl' => '/admin/zmień-baner'], name: 'app_admin_banner_change')]
+    public function change(EntityManagerInterface $em, Request $request): Response
+    {
+        $banner = empty($em->getRepository(Banner::class)->find(1)) ? new Banner() : $em->getRepository(Banner::class)->find(1);
+
+        $form = $this->createForm(BannerType::class, $banner);
+
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid())
-        {
-            $image = $form->get('image')->getData();
-            if($image->guessExtension()!="png")
-                $this->addFlash('danger','Image upload failed!');
-            else{
-                try{
-                    $fileName = 'banner.'.$image->guessExtension();
-                    $image->move(
-                    $this->getParameter('image_path'),
-                    $fileName
-                    );
-                    $this->addFlash('success','Image upload success!');
-                }catch(FileException $e){
-                    $this->addFlash('danger','Image upload failed!');
+
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $this->addFlash(MessageType::SUCCESS, 'Image upload success!');
+            }
+            if (!empty($form->getErrors())) {
+                foreach ($form->getErrors() as $error) {
+                    $this->addFlash(MessageType::DANGER, $error->getMessage());
                 }
-                $banner = $em->getRepository(Banner::class)->find(1);
-                $banner->setImage($fileName);
-                $em->persist($banner);
-                $em->flush();
             }
         }
-        
-        return $this->render('/admin/banner/change_banner.html.twig',[
-            'form'=>$form->createView()
+
+        return $this->render('/admin/banner/change_banner.html.twig', [
+            'form' => $form,
         ]);
     }
-    #[Route(['en'=>'/admin/disable-banner/{banner}','pl'=>'/admin/wyłącz-baner/{banner}'], name: 'app_admin_banner_disable')]
-    public function bannerDisable(EntityManagerInterface $em, Banner $banner): Response{
+
+    #[Route(['en' => '/admin/disable-banner/{banner}', 'pl' => '/admin/wyłącz-baner/{banner}'], name: 'app_admin_banner_disable')]
+    public function disable(EntityManagerInterface $em, Banner $banner): Response
+    {
         $banner->setActive(!$banner->getActive());
         $em->persist($banner);
-        $em->flush(); 
+        $em->flush();
         return $this->redirectToRoute("app_admin_banner_panel");
     }
 }
-?>

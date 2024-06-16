@@ -13,29 +13,29 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
-    private $passwordHasher;
+    private UserPasswordHasherInterface $passwordHasher;
     public function __construct(UserPasswordHasherInterface $passwordHasher)
     {
         $this->passwordHasher = $passwordHasher;
     }
-    
+
     public function load(ObjectManager $manager)
     {
         $admin = new User();
         $admin->setUsername("admin");
-        $admin->setPassword($this->passwordHasher->hashPassword($admin,"qwerty()*"));
+        $admin->setPassword($this->passwordHasher->hashPassword($admin, "qwerty()*"));
         $admin->setRoles(["ROLE_ADMIN"]);
 
         $category = new Category();
         $category->setName("Example category");
-        for($i=0; $i<10; $i++)
-        {
+        for ($i = 0; $i < 10; $i++) {
             $post = new Post();
-            $post->setTitle("Example title ".$i);
+            $post->setTitle("Example title " . $i);
             $post->setContent("Add more, delete or edit this post");
             $datetime = new DateTime('now');
-            $datetime->add(new DateInterval("P".$i."D"));
-            $post->setDate($datetime);
+            $datetime->add(new DateInterval("P" . $i . "D"));
+            $post->setDateEntered($datetime);
+            $post->setDateModified($datetime);
             $post->setCategory($category);
             $manager->persist($post);
         }
