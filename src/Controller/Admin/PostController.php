@@ -5,22 +5,25 @@ namespace App\Controller\Admin;
 use App\Config\Message\MessageType;
 use App\Entity\Post;
 use App\Form\Type\PostType;
+use App\Service\MassActions\MassDeleteService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class PostController extends AbstractController
 {
-    public function __construct(protected EntityManagerInterface $em){}
+    public function __construct(protected EntityManagerInterface $em)
+    {}
 
     #[Route(['en' => '/admin/post-panel/{page}', 'pl' => '/admin/panel-postów/{page}'], name: 'app_admin_post_panel',
         defaults: ['page' => 1]
     )]
     public function list(int $page): Response
     {
-        $posts = $this->em->getRepository(Post::class)->findAllPaginated($page);
+        $posts = $this->em->getRepository(Post::class)->findAllPaginated($page, 10);
 
         return $this->render('/admin/posts/post_panel.html.twig', [
             'posts' => $posts,
@@ -67,5 +70,13 @@ class PostController extends AbstractController
         $this->em->remove($post);
         $this->em->flush();
         return $this->redirectToRoute("app_admin_post_panel", ['page' => 1]);
+    }
+
+    #[Route(path: "/api/admin/massDelete/post", name: 'app_admin_mass_delete_post', methods: ['DELETE'], defaults: [
+        '_api_operation_name' => '_api_/api/admin/massDelete/post',
+    ])]
+    public function massDelete(Request $request): JsonResponse
+    {
+        return (new MassDeleteService(json_decode($request->getContent(), true), $this->em))->process();
     }
 }

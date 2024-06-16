@@ -2,11 +2,30 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post as ApiPost;
+use App\Controller\Admin\PostController;
 use App\Repository\PostRepository;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
+#[ApiResource(operations:[
+    new Get(),
+    new ApiPost(),
+    new Patch(),
+    new Delete(
+        name: "massDeletePost",
+        routeName: 'app_admin_mass_delete_post',
+        controller: PostController::class,
+        uriTemplate: "/api/admin/massDelete/post" 
+    ),
+    new Delete()
+])]
 class Post
 {
     #[ORM\Id]
@@ -27,6 +46,7 @@ class Post
     private $dateModified;
 
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'posts')]
+    #[JoinColumn(name: "category_id", referencedColumnName: "id", nullable: true, onDelete:"SET NULL")]
     private $category;
 
     public function getId(): ?int

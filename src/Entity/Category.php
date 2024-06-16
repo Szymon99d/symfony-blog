@@ -2,12 +2,29 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Post as ApiPost;
+use App\Controller\Admin\CategoryController;
 use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
+#[ApiResource(operations:[
+    new Get(),
+    new ApiPost(),
+    new Patch(),
+    new Delete(
+        name: "massDeleteCategory",
+        routeName: 'app_admin_mass_delete_category',
+        controller: CategoryController::class,
+        uriTemplate: "/api/admin/massDelete/category" 
+    ),
+    new Delete()
+])]
 class Category
 {
     #[ORM\Id]

@@ -4,12 +4,18 @@
 <div class="pt-4">
   <div>
     <a href="{{path('app_admin_create_post')}}" class="btn btn-success"><i class="bi bi-plus-square px-1"></i> {% trans %}Add new post{% endtrans %}</a>
+    <a style="display: none" id="massDeleteButton" data-entity="Post" class="btn btn-danger"><i class="bi bi-trash px-1"></i> {% trans %}Delete selected posts{% endtrans %}</a>
   </div>
 </div>
 
 <table class="table table-striped mt-4">
   <thead>
     <tr>
+      <th scope="col">
+        <div class="form-check">
+          <input class="form-check-input" onclick="window.massDelete.checkAllRecords()" type="checkbox" value="" id="checkAll">
+        </div>     
+      </th>
       <th class="th-sortable" scope="col">{{ knp_pagination_sortable(posts, 'Id'|trans, 'p.id')}}</th>
       <th class="th-sortable" scope="col">{{ knp_pagination_sortable(posts, 'Title'|trans, 'p.title')}}</th>
       <th class="th-sortable" scope="col">{{ knp_pagination_sortable(posts, 'Content'|trans, 'p.content')}}</th>
@@ -20,6 +26,11 @@
   <tbody>
     {% for post in posts %}
         <tr>
+            <td>
+              <div class="form-check">
+                <input class="form-check-input check-mass-delete" type="checkbox" value="" id="{{post.id}}">
+              </div>      
+            </td>
             <td>{{post.id}}</td>
             <td>{{post.title}}</td>
             {% if post.content|length > 50 %}
