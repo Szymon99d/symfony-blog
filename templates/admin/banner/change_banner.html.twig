@@ -19,6 +19,9 @@
 {{form_label(form.image)}}
 {{form_widget(form.image)}}
 
+{{form_label(form.altText)}}
+{{form_widget(form.altText)}}
+
 {{form_widget(form.submit)}}
 <a href="{{path('app_admin_banner_panel')}}" class="btn btn-primary">{% trans %}Back.to.banner.panel{% endtrans %}</a>
 {{form_end(form)}}

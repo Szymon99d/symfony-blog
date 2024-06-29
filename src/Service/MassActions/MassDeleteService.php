@@ -31,8 +31,8 @@ class MassDeleteService
             $connection = $this->em->getConnection();
             $connection->beginTransaction();
             $connection->executeQuery(
-                "DELETE FROM " 
-                . $this->em->getClassMetadata(static::ENTITY_CLASS_NAMESPACE . "\\" . $entityName)->getTableName() 
+                "DELETE FROM "
+                . $this->em->getClassMetadata(static::ENTITY_CLASS_NAMESPACE . "\\" . $entityName)->getTableName()
                 . " WHERE id IN " . $ids
             );
             $connection->commit();

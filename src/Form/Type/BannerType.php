@@ -25,6 +25,7 @@ class BannerType extends BaseType
                 'data_class' => null,
             ])
             ->add('altText', TextType::class, [
+                'label' => 'Alt text',
                 'attr' => ['class' => 'form-control mb-3'],
             ])
             ->add('submit', SubmitType::class, [
