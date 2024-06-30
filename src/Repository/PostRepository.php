@@ -29,6 +29,14 @@ class PostRepository extends ServiceEntityRepository
         return $this->paginator->paginate($query, $page, $limit, ['defaultSortFieldName' => 'p.dateEntered', 'defaultSortDirection' => 'DESC']);
     }
 
+    public function findPublishedPaginated(int $page, int $limit = 5)
+    {
+        $query = $this->createQueryBuilder('p')
+            ->where('p.published = true')
+            ->getQuery();
+        return $this->paginator->paginate($query, $page, $limit, ['defaultSortFieldName' => 'p.dateEntered', 'defaultSortDirection' => 'DESC']);
+    }
+
     public function findAllPaginatedByCategory(int $page, Category $category)
     {
         $query = $this->createQueryBuilder('p')

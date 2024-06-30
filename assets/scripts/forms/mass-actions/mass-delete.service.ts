@@ -7,11 +7,13 @@ export class MassDelete
 
     public constructor()
     {
-        this.getMassDeleteInputs().forEach((recordCheckInput) => {
-            recordCheckInput.addEventListener('click', this.calculateSelectedRecords.bind(this));
-        });
-        this.getMassDeleteButton().addEventListener('click', this.deleteSelectedRecords.bind(this));
-        this.calculateSelectedRecords();
+        if(this.getMassDeleteInputs().length > 0 && this.getMassDeleteButton()){
+            this.getMassDeleteInputs().forEach((recordCheckInput) => {
+                recordCheckInput.addEventListener('click', this.calculateSelectedRecords.bind(this));
+            });
+            this.getMassDeleteButton().addEventListener('click', this.deleteSelectedRecords.bind(this));
+            this.calculateSelectedRecords();
+        }
     }
 
     public checkAllRecords(): void

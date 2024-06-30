@@ -9,6 +9,8 @@
             <a href="{{path('app_blog_category',{'category':post.category.id})}}" class="badge post-category-badge">{{post.category.name}}</a>
             {% endif %}
         <hr>
+        <p class="pb-2">{{post.shortDescription|raw}}</p>
+        <hr>
         <p class="pb-4">{{post.content|raw}}</p>
     </div>
     <div class="mx-auto">

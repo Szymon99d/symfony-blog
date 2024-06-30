@@ -1,0 +1,5 @@
+{% block checkbox_widget %}
+<div class="form-check {{attr['div_class']}}">
+    <input type="checkbox" id="{{name}}" name="{{full_name}}" class="{{attr['class']}}" {% if required %} required {% endif %} {% if data %} checked {% endif %}>
+</div>
+{% endblock %}

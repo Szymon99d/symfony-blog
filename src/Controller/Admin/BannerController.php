@@ -4,7 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Config\Message\MessageType;
 use App\Entity\Banner;
-use App\Form\Type\BannerType;
+use App\Form\Type\Entity\BannerType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

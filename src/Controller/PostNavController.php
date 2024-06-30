@@ -14,7 +14,7 @@ class PostNavController extends AbstractController
     public function renderSidebar(EntityManagerInterface $em): Response
     {
         $categories = $em->getRepository(Category::class)->findAll();
-        $posts = $em->getRepository(Post::class)->findBy([], ['dateEntered' => 'DESC'], 4);
+        $posts = $em->getRepository(Post::class)->findBy(['published' => true], ['dateEntered' => 'DESC'], 4);
         return $this->render('/blog_elements/post_nav.html.twig', [
             'categories' => $categories,
             'posts' => $posts,

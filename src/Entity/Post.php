@@ -10,6 +10,7 @@ use ApiPlatform\Metadata\Post as ApiPost;
 use App\Controller\Admin\PostController;
 use App\Repository\PostRepository;
 use DateTime;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 
@@ -49,6 +50,12 @@ class Post
     #[JoinColumn(name: "category_id", referencedColumnName: "id", nullable: true, onDelete:"SET NULL")]
     private $category;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $published = null;
+
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $shortDescription = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -71,7 +78,7 @@ class Post
         return $this->content;
     }
 
-    public function setContent(string $content): self
+    public function setContent(?string $content): self
     {
         $this->content = $content;
 
@@ -121,6 +128,30 @@ class Post
             $this->setDateEntered($nowDate);
         }
         $this->setDateModified($nowDate);
+        return $this;
+    }
+
+    public function isPublished(): ?bool
+    {
+        return $this->published;
+    }
+
+    public function setPublished(?bool $published): static
+    {
+        $this->published = $published;
+
+        return $this;
+    }
+
+    public function getShortDescription(): ?string
+    {
+        return $this->shortDescription;
+    }
+
+    public function setShortDescription(string $shortDescription): static
+    {
+        $this->shortDescription = $shortDescription;
+
         return $this;
     }
 }

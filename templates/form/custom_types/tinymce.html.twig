@@ -1,0 +1,19 @@
+{% block tinymce_widget %}
+<div class="pb-3">
+    <script src="{{asset('tinymce/tinymce/tinymce.min.js')}}" referrerpolicy="origin"></script>
+    <script>
+      tinymce.init({
+        selector: '#{{name}}',
+        plugins: 'table lists emoticons wordcount',
+        toolbar: "bold italic underline fontsize fontfamily | forecolor backcolor | bullist numlist | table | align | emoticons",
+        font_size_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt 72pt',
+        menubar: '',
+        branding: false,
+        promotion: false,
+        navigation: false,
+        statusbar: false,
+      });
+    </script>
+    <textarea id="{{name}}" name="{{full_name}}">{{data}}</textarea>
+</div>
+{% endblock %}

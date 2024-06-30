@@ -2,7 +2,7 @@
 
 {% block form %}
 
-<div class="container w-75">
+<div class="container w-75 pb-5">
 
 {% if post.id != null %}
 <div class="my-4">
@@ -18,9 +18,15 @@
 {{form_label(postForm.title)}}
 {{form_widget(postForm.title)}}
 
+{{form_label(postForm.published)}} 
+<i style="font-size: 12px" class="bi bi-info-circle"></i> {{form_help(postForm.published)}}
+{{form_widget(postForm.published)}}
+
+{{form_label(postForm.shortDescription)}}
+{{form_widget(postForm.shortDescription)}}
+
 {{form_label(postForm.content)}}
 {{form_widget(postForm.content)}}
-
 
 {{form_label(postForm.category)}}
 {{form_widget(postForm.category)}}

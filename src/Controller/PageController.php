@@ -28,7 +28,7 @@ class PageController extends AbstractController
     #[Route('/blog/{page}', name: 'app_blog', defaults: ['page' => 1])]
     public function blog(EntityManagerInterface $em, $page): Response
     {
-        $posts = $em->getRepository(Post::class)->findAllPaginated($page);
+        $posts = $em->getRepository(Post::class)->findPublishedPaginated($page);
 
         return $this->render('pages/blog.html.twig', [
             'posts' => $posts,

@@ -10,7 +10,11 @@
                         <div class="latest-post-body card-body">
                             <h5 class="card-title">{{post.title}}</h5>
                             <h6 class="card-subtitle mb-2">{% trans %}Date{% endtrans %}: {{post.dateEntered|date("d.m.Y")}}</h6>
-                            <p class="card-text">{{post.content|slice(0,25)}}...</p>
+                            {% if post.shortDescription|length > 300 %}
+                                <p>{{post.shortDescription|slice(0,300)}}...</p>
+                            {% else %}
+                                <p>{{post.shortDescription}}</p>
+                            {% endif %}
                             <a href="{{path('app_post_read',{'id':post.id})}}" class="btn btn-success w-100">
                                 {% trans %}Read more{% endtrans %}
                             </a>

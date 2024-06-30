@@ -1,5 +1,9 @@
 {% extends 'admin_layout.html.twig' %}
 
+{% block javascripts %}
+    {{encore_entry_script_tags('form')}}
+{% endblock %}
+
 {% block main %}
 <div class="pt-4">
   <div>
@@ -18,8 +22,9 @@
       </th>
       <th class="th-sortable" scope="col">{{ knp_pagination_sortable(posts, 'Id'|trans, 'p.id')}}</th>
       <th class="th-sortable" scope="col">{{ knp_pagination_sortable(posts, 'Title'|trans, 'p.title')}}</th>
-      <th class="th-sortable" scope="col">{{ knp_pagination_sortable(posts, 'Content'|trans, 'p.content')}}</th>
       <th class="th-sortable" scope="col">{{ knp_pagination_sortable(posts, 'Date.Entered'|trans, 'p.dateEntered')}}</th>
+      <th class="th-sortable" scope="col">{{ knp_pagination_sortable(posts, 'Date.Modified'|trans, 'p.dateModified')}}</th>
+      <th class="th-sortable" scope="col">{{ knp_pagination_sortable(posts, 'Published'|trans, 'p.published')}}</th>
       <th scope="col">{% trans %} Category {% endtrans %}</th>
       <th scope="col">{% trans %} Actions {% endtrans %}</th>
     </tr>
@@ -34,12 +39,9 @@
             </td>
             <td>{{post.id}}</td>
             <td>{{post.title}}</td>
-            {% if post.content|length > 50 %}
-              <td>{{post.content|slice(0,50)}}...</td>
-            {% else %}
-              <td>{{post.content}}</td>
-            {% endif %}
             <td>{{post.dateEntered|date('d/m/Y')}}</td>
+            <td>{{post.dateModified|date('d/m/Y')}}</td>
+            <td><input class="form-check-input" type="checkbox" disabled {% if post.published %} checked {% endif %}/></td>
             <td>
               {% if post.category is not empty %}
                 <a class="relation-link" href="{{path('app_admin_edit_category', {'category': post.category.id})}}">{{post.category}}</a>

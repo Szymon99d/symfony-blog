@@ -4,7 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Config\Message\MessageType;
 use App\Entity\Category;
-use App\Form\Type\CategoryType;
+use App\Form\Type\Entity\CategoryType;
 use App\Service\MassActions\MassDeleteService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

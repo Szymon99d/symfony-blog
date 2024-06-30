@@ -33,10 +33,10 @@
                         {% endif %}
                     </h6>
                 </div>
-                {% if post.content|length > 300 %}
-                    <p>{{post.content|slice(0,300)}}...</p>
+                {% if post.shortDescription|length > 300 %}
+                    <p>{{post.shortDescription|slice(0,300)}}...</p>
                 {% else %}
-                    <p>{{post.content}}</p>
+                    <p>{{post.shortDescription}}</p>
                 {% endif %}
                 <a href="{{path('app_post_read',{'id':post.getId()})}}" class="btn btn-success px-5 py-1 mb-1 margin-top">{% trans %}Read more{% endtrans %}</a>
         </div>

@@ -41,4 +41,10 @@
   color: rgb(47, 98, 174);
 }
 
+.help-text {
+  color: gray;
+  font-size: 12px;
+  display: inline;
+}
+
 /*# sourceMappingURL=app.css.map */

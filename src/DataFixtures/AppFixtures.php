@@ -32,6 +32,8 @@ class AppFixtures extends Fixture
             $post = new Post();
             $post->setTitle("Example title " . $i);
             $post->setContent("Add more, delete or edit this post");
+            $post->setShortDescription("Short description");
+            $post->setPublished(true);
             $datetime = new DateTime('now');
             $datetime->add(new DateInterval("P" . $i . "D"));
             $post->setDateEntered($datetime);
