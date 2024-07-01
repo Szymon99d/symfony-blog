@@ -12,51 +12,53 @@
   </div>
 </div>
 
-<table class="table table-striped mt-4">
-  <thead>
-    <tr>
-      <th scope="col">
-        <div class="form-check">
-          <input class="form-check-input" onclick="window.massDelete.checkAllRecords()" type="checkbox" value="" id="checkAll">
-        </div>     
-      </th>
-      <th class="th-sortable" scope="col">{{ knp_pagination_sortable(posts, 'Id'|trans, 'p.id')}}</th>
-      <th class="th-sortable" scope="col">{{ knp_pagination_sortable(posts, 'Title'|trans, 'p.title')}}</th>
-      <th class="th-sortable" scope="col">{{ knp_pagination_sortable(posts, 'Date.Entered'|trans, 'p.dateEntered')}}</th>
-      <th class="th-sortable" scope="col">{{ knp_pagination_sortable(posts, 'Date.Modified'|trans, 'p.dateModified')}}</th>
-      <th class="th-sortable" scope="col">{{ knp_pagination_sortable(posts, 'Published'|trans, 'p.published')}}</th>
-      <th scope="col">{% trans %} Category {% endtrans %}</th>
-      <th scope="col">{% trans %} Actions {% endtrans %}</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for post in posts %}
-        <tr>
-            <td>
-              <div class="form-check">
-                <input class="form-check-input check-mass-delete" type="checkbox" value="" id="{{post.id}}">
-              </div>      
-            </td>
-            <td>{{post.id}}</td>
-            <td>{{post.title}}</td>
-            <td>{{post.dateEntered|date('d/m/Y')}}</td>
-            <td>{{post.dateModified|date('d/m/Y')}}</td>
-            <td><input class="form-check-input" type="checkbox" disabled {% if post.published %} checked {% endif %}/></td>
-            <td>
-              {% if post.category is not empty %}
-                <a class="relation-link" href="{{path('app_admin_edit_category', {'category': post.category.id})}}">{{post.category}}</a>
-              {% endif %}
-            </td>
-            <td>
-              <a href="{{path('app_admin_edit_post',{'post':post.id})}}" class="btn btn-primary mx-1"><i class="bi bi-pen px-1"></i>{% trans %}Edit.blank{% endtrans %}</a>
-              <a href="{{path('app_admin_delete_post',{'post':post.id})}}" 
-              onclick="return confirm('Are you sure you want to delete this post?')" class="btn btn-danger"><i class="bi bi-trash px-1"></i>{% trans %}Delete{% endtrans %}</a>
-            </td>
-        </tr>
-    {% endfor %}
-  </tbody>
-</table>
- 
+<div class="table-responsive">
+  <table class="table table-striped mt-4">
+    <thead>
+      <tr>
+        <th scope="col">
+          <div class="form-check">
+            <input class="form-check-input" onclick="window.massDelete.checkAllRecords()" type="checkbox" value="" id="checkAll">
+          </div>     
+        </th>
+        <th class="th-sortable" scope="col">{{ knp_pagination_sortable(posts, 'Id'|trans, 'p.id')}}</th>
+        <th class="th-sortable" scope="col">{{ knp_pagination_sortable(posts, 'Title'|trans, 'p.title')}}</th>
+        <th class="th-sortable" scope="col">{{ knp_pagination_sortable(posts, 'Date.Entered'|trans, 'p.dateEntered')}}</th>
+        <th class="th-sortable" scope="col">{{ knp_pagination_sortable(posts, 'Date.Modified'|trans, 'p.dateModified')}}</th>
+        <th class="th-sortable" scope="col">{{ knp_pagination_sortable(posts, 'Published'|trans, 'p.published')}}</th>
+        <th scope="col">{% trans %} Category {% endtrans %}</th>
+        <th scope="col">{% trans %} Actions {% endtrans %}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for post in posts %}
+          <tr>
+              <td>
+                <div class="form-check">
+                  <input class="form-check-input check-mass-delete" type="checkbox" value="" id="{{post.id}}">
+                </div>      
+              </td>
+              <td>{{post.id}}</td>
+              <td>{{post.title}}</td>
+              <td>{{post.dateEntered|date('d/m/Y')}}</td>
+              <td>{{post.dateModified|date('d/m/Y')}}</td>
+              <td><input class="form-check-input" type="checkbox" disabled {% if post.published %} checked {% endif %}/></td>
+              <td>
+                {% if post.category is not empty %}
+                  <a class="relation-link" href="{{path('app_admin_edit_category', {'category': post.category.id})}}">{{post.category}}</a>
+                {% endif %}
+              </td>
+              <td>
+                <a href="{{path('app_admin_edit_post',{'post':post.id})}}" class="btn btn-primary mx-1"><i class="bi bi-pen px-1"></i>{% trans %}Edit.blank{% endtrans %}</a>
+                <a href="{{path('app_admin_delete_post',{'post':post.id})}}" 
+                onclick="return confirm('Are you sure you want to delete this post?')" class="btn btn-danger"><i class="bi bi-trash px-1"></i>{% trans %}Delete{% endtrans %}</a>
+              </td>
+          </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
 <div class="d-flex justify-content-center">
 {{knp_pagination_render(posts)}}
 </div>

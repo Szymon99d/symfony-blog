@@ -16,7 +16,7 @@ class Banner
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $image;
 
-    #[ORM\Column(type: 'boolean', options: ['default' => true])]
+    #[ORM\Column(type: 'boolean', options: ['default' => true], nullable: true)]
     private $active;
 
     #[ORM\Column(type: 'string', length: 255)]
@@ -44,9 +44,9 @@ class Banner
         return $this->active;
     }
 
-    public function setActive(bool $active): self
+    public function setActive(?bool $active): self
     {
-        $this->active = $active;
+        $this->active = $active ?? false;
 
         return $this;
     }

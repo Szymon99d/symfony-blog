@@ -11,6 +11,15 @@
   background-color: #105473;
 }
 
+.language-option:hover {
+  background-color: rgb(54, 54, 54);
+  transition: 0.2s;
+}
+
+.form-check-input[type=checkbox] {
+  border: 1px solid #636363;
+}
+
 .post-category-badge {
   background-color: #105473;
   color: white;
@@ -26,15 +35,6 @@
   flex-wrap: wrap;
 }
 
-.language-option:hover {
-  background-color: rgb(54, 54, 54);
-  transition: 0.2s;
-}
-
-.form-check-input[type=checkbox] {
-  border: 1px solid #636363;
-}
-
 .relation-link {
   text-decoration: none;
   font-weight: bold;
@@ -45,6 +45,10 @@
   color: gray;
   font-size: 12px;
   display: inline;
+}
+
+.form-control, .tox .tox-editor-container, .form-select {
+  border: 1px solid rgba(60, 60, 60, 0.5411764706);
 }
 
 /*# sourceMappingURL=app.css.map */
